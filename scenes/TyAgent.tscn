@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://dxab0nnema7yu"]
+
+[ext_resource type="Script" path="res://src/AgentDependencies.cs" id="1_x7sv5"]
+[ext_resource type="Material" uid="uid://dokcqo1ivbvhm" path="res://shaders/Agent1.tres" id="2_un7u0"]
+[ext_resource type="Script" path="res://src/AgentDetector.cs" id="3_0fwft"]
+[ext_resource type="Script" path="res://src/AgentBehaviours.cs" id="4_4g7if"]
+[ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="5_s8omf"]
+[ext_resource type="Script" path="res://src/PositionWrap.cs" id="6_tfmlv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_di4hg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d230m"]
+
+[node name="TestAgent" type="RigidBody2D"]
+gravity_scale = 2.66454e-15
+script = ExtResource("1_x7sv5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_di4hg")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = ExtResource("2_un7u0")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AgentDetector" type="Area2D" parent="."]
+script = ExtResource("3_0fwft")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AgentDetector"]
+scale = Vector2(4, 4)
+shape = SubResource("CircleShape2D_d230m")
+
+[node name="Behaviours" type="Node" parent="."]
+script = ExtResource("4_4g7if")
+
+[node name="RandomVelocityOnReady" type="Node" parent="Behaviours"]
+script = ExtResource("5_s8omf")
+initialVelocityMin = 50.0
+initialVelocityMax = 20.0
+
+[node name="PositionWrap" type="Node" parent="Behaviours"]
+script = ExtResource("6_tfmlv")
