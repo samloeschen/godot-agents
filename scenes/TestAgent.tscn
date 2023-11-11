@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cefatncaej0cl"]
+[gd_scene load_steps=7 format=3 uid="uid://cefatncaej0cl"]
 
 [ext_resource type="Script" path="res://src/AgentDependencies.cs" id="1_f57ha"]
 [ext_resource type="Material" uid="uid://dokcqo1ivbvhm" path="res://shaders/Agent1.tres" id="1_hdbdd"]
 [ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="2_j6c7q"]
 [ext_resource type="Script" path="res://src/AgentBehaviours.cs" id="3_mpiex"]
+[ext_resource type="Script" path="res://src/PositionWrap.cs" id="5_3ehpe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_di4hg"]
 
@@ -33,3 +34,6 @@ script = ExtResource("3_mpiex")
 
 [node name="RandomVelocityOnReady" type="Node" parent="Behaviours"]
 script = ExtResource("2_j6c7q")
+
+[node name="PositionWrap" type="Node" parent="Behaviours"]
+script = ExtResource("5_3ehpe")
