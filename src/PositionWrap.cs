@@ -11,7 +11,7 @@ public partial class PositionWrap : Node, IBehaviourNode
 
 	public override void _Process(double _delta)
 	{
-		return;
+		// return;
 		if (!(deps.GetNodeOrNull<RigidBody2D>() is { } rb)) return;
 
 
