@@ -1,5 +1,5 @@
 using Godot;
-public partial class AgentDependencies: Node {
+public partial class AgentDependencies: RigidBody2D {
     System.Collections.Generic.Dictionary<System.Type, Node> depsDict;
     public T GetNodeOrNull<T>() where T: Node {
         if (depsDict.TryGetValue(typeof(T), out Node n)) {
@@ -10,7 +10,10 @@ public partial class AgentDependencies: Node {
     AgentBehaviours _agentBehaviours;
     public override void _Ready() {
         int nChildren = GetChildCount();
-        depsDict = new System.Collections.Generic.Dictionary<System.Type, Node>(nChildren);
+        depsDict = new System.Collections.Generic.Dictionary<System.Type, Node>(nChildren) {
+            { typeof(RigidBody2D), this },
+            { typeof(AgentDependencies), this }
+        };
 
         for (int i = 0; i < nChildren; i++) {
             var child = GetChild(i);
