@@ -9,7 +9,6 @@ partial class Spawner: Node {
     Vector2[] spawnPts;
 
     public override void _Ready() {
-
         // TODO bake these
         spawnPts = new Vector2[numSpawnPoints];
         BlueNoisePoints.GenerateBlueNoiseSamplePoints(ref spawnPts, seed);
