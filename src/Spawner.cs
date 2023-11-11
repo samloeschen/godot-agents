@@ -13,11 +13,11 @@ partial class Spawner: Node {
 		spawnPts = new Vector2[numSpawnPoints];
 		BlueNoisePoints.GenerateBlueNoiseSamplePoints(ref spawnPts, seed);
 
-        int idx = 0;
+		int idx = 0;
 		foreach (var pt in spawnPts) {
 			var root = scenesToSpawn[idx].Instantiate();
 
-            idx = (idx + 1) % scenesToSpawn.Length;
+			idx = (idx + 1) % scenesToSpawn.Length;
 			agentParent.AddChild(root);
 			if (root is AgentDependencies deps) {
 				if (deps.GetNodeOrNull<RigidBody2D>() is {} rb) {
