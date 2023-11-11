@@ -1,11 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://cefatncaej0cl"]
+[gd_scene load_steps=8 format=3 uid="uid://cefatncaej0cl"]
 
 [ext_resource type="Script" path="res://src/AgentDependencies.cs" id="1_f57ha"]
 [ext_resource type="Material" uid="uid://dokcqo1ivbvhm" path="res://shaders/Agent1.tres" id="1_hdbdd"]
 [ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="2_j6c7q"]
+[ext_resource type="Script" path="res://src/AgentDetector.cs" id="3_jufu3"]
 [ext_resource type="Script" path="res://src/AgentBehaviours.cs" id="3_mpiex"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_di4hg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d230m"]
 
 [node name="TestAgent" type="RigidBody2D"]
 gravity_scale = 2.66454e-15
@@ -27,6 +30,13 @@ offset_right = 15.0
 offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="AgentDetector" type="Area2D" parent="."]
+script = ExtResource("3_jufu3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AgentDetector"]
+scale = Vector2(4, 4)
+shape = SubResource("CircleShape2D_d230m")
 
 [node name="Behaviours" type="Node" parent="."]
 script = ExtResource("3_mpiex")
