@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://djqxn24jlsgxg"]
+[gd_scene load_steps=8 format=3 uid="uid://djqxn24jlsgxg"]
 
 [ext_resource type="Script" path="res://src/Main.cs" id="1_tsxt1"]
 [ext_resource type="Material" uid="uid://5lkkaquwo8ti" path="res://shaders/Background.tres" id="2_grwpl"]
 [ext_resource type="Shader" path="res://shaders/Viewport.gdshader" id="2_nrbq1"]
+[ext_resource type="Script" path="res://src/Spawner.cs" id="3_cn8v4"]
+[ext_resource type="PackedScene" uid="uid://cefatncaej0cl" path="res://scenes/TestAgent.tscn" id="4_vl2t3"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_33dwi"]
 viewport_path = NodePath("WorldViewport")
@@ -21,8 +23,6 @@ size = Vector2i(128, 128)
 
 [node name="WorldCanvas" type="CanvasLayer" parent="WorldViewport"]
 
-[node name="AGENTS GO IN HERE!" type="Node" parent="WorldViewport/WorldCanvas"]
-
 [node name="BackgroundRect" type="ColorRect" parent="WorldViewport/WorldCanvas"]
 material = ExtResource("2_grwpl")
 anchors_preset = 15
@@ -30,6 +30,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="AGENTS GO IN HERE!" type="Node2D" parent="WorldViewport/WorldCanvas"]
+
+[node name="Spawner" type="Node" parent="WorldViewport/WorldCanvas" node_paths=PackedStringArray("agentParent")]
+script = ExtResource("3_cn8v4")
+agentParent = NodePath("../AGENTS GO IN HERE!")
+sceneToSpawn = ExtResource("4_vl2t3")
 
 [node name="Display" type="CanvasLayer" parent="."]
 

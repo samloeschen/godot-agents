@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cefatncaej0cl"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_6acph"]
+
+[node name="TestAgent" type="Node2D"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(10, 10)
+mesh = SubResource("SphereMesh_6acph")
