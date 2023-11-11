@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://djqxn24jlsgxg"]
+[gd_scene load_steps=9 format=3 uid="uid://djqxn24jlsgxg"]
 
 [ext_resource type="Script" path="res://src/Main.cs" id="1_tsxt1"]
 [ext_resource type="Material" uid="uid://5lkkaquwo8ti" path="res://shaders/Background.tres" id="2_grwpl"]
 [ext_resource type="Shader" path="res://shaders/Viewport.gdshader" id="2_nrbq1"]
 [ext_resource type="Script" path="res://src/Spawner.cs" id="3_cn8v4"]
 [ext_resource type="PackedScene" uid="uid://cefatncaej0cl" path="res://scenes/TestAgent.tscn" id="4_vl2t3"]
+[ext_resource type="PackedScene" uid="uid://5wfh1jlqh32u" path="res://scenes/TyAgent.tscn" id="5_d86ep"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_33dwi"]
 viewport_path = NodePath("WorldViewport")
@@ -36,7 +37,7 @@ grow_vertical = 2
 [node name="Spawner" type="Node" parent="WorldViewport/WorldCanvas" node_paths=PackedStringArray("agentParent")]
 script = ExtResource("3_cn8v4")
 agentParent = NodePath("../AGENTS GO IN HERE!")
-scenesToSpawn = Array[PackedScene]([ExtResource("4_vl2t3")])
+scenesToSpawn = Array[PackedScene]([ExtResource("4_vl2t3"), ExtResource("5_d86ep")])
 
 [node name="Display" type="CanvasLayer" parent="."]
 

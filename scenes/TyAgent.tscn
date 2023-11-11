@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxab0nnema7yu"]
+[gd_scene load_steps=9 format=3 uid="uid://5wfh1jlqh32u"]
 
 [ext_resource type="Script" path="res://src/AgentDependencies.cs" id="1_x7sv5"]
 [ext_resource type="Material" uid="uid://dokcqo1ivbvhm" path="res://shaders/Agent1.tres" id="2_un7u0"]
@@ -31,6 +31,7 @@ offset_right = 15.0
 offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(1, 0.188235, 1, 1)
 
 [node name="AgentDetector" type="Area2D" parent="."]
 script = ExtResource("3_0fwft")
