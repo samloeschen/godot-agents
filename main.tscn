@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://djqxn24jlsgxg"]
+
+[ext_resource type="Script" path="res://src/Main.cs" id="1_pge4r"]
+[ext_resource type="Material" uid="uid://de5ipokcbknrg" path="res://materials/DisplayMaterial.tres" id="2_s4lil"]
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("worldViewport", "displayRect", "backgroundRect")]
+texture_filter = 1
+script = ExtResource("1_pge4r")
+worldViewport = NodePath("WorldViewport")
+displayRect = NodePath("Display/DisplayRect")
+backgroundRect = NodePath("WorldViewport/WorldCanvas/BackgroundRect")
+
+[node name="WorldViewport" type="SubViewport" parent="."]
+size = Vector2i(128, 128)
+
+[node name="WorldCanvas" type="CanvasLayer" parent="WorldViewport"]
+
+[node name="AGENTS GO IN HERE!" type="Node" parent="WorldViewport/WorldCanvas"]
+
+[node name="BackgroundRect" type="ColorRect" parent="WorldViewport/WorldCanvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Display" type="CanvasLayer" parent="."]
+
+[node name="DisplayRect" type="ColorRect" parent="Display"]
+material = ExtResource("2_s4lil")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
