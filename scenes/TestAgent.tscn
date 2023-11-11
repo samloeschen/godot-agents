@@ -1,11 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://cefatncaej0cl"]
+[gd_scene load_steps=3 format=3 uid="uid://cefatncaej0cl"]
 
 [ext_resource type="Material" uid="uid://dokcqo1ivbvhm" path="res://shaders/Agent1.tres" id="1_hdbdd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_di4hg"]
 
 [node name="TestAgent" type="Node2D"]
 scale = Vector2(0.5, 0.5)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = ExtResource("1_hdbdd")
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_di4hg")
