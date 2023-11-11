@@ -35,7 +35,7 @@ public partial class AgentDependencies: RigidBody2D {
 				int nBehaviours = behaviours.GetChildCount();
 				for (int j = 0; j < nBehaviours; j++) {
 					var behaviour = behaviours.GetChild(j);
-					AddChild(behaviour);
+					AddNode(behaviour);
 				}
 				_agentBehaviours = behaviours;
 			}
