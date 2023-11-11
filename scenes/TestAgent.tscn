@@ -43,3 +43,5 @@ script = ExtResource("3_mpiex")
 
 [node name="RandomVelocityOnReady" type="Node" parent="Behaviours"]
 script = ExtResource("2_j6c7q")
+initialVelocityMin = 5.0
+initialVelocityMax = 20.0
