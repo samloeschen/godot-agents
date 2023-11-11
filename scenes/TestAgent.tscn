@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cefatncaej0cl"]
+[gd_scene load_steps=5 format=3 uid="uid://cefatncaej0cl"]
 
+[ext_resource type="Script" path="res://src/AgentDependencies.cs" id="1_f57ha"]
 [ext_resource type="Material" uid="uid://dokcqo1ivbvhm" path="res://shaders/Agent1.tres" id="1_hdbdd"]
+[ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="2_j6c7q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_di4hg"]
 
 [node name="TestAgent" type="Node2D"]
 scale = Vector2(0.5, 0.5)
+script = ExtResource("1_f57ha")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = ExtResource("1_hdbdd")
@@ -18,3 +21,9 @@ offset_bottom = 20.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("CircleShape2D_di4hg")
+
+[node name="Behaviours" type="Node" parent="."]
+script = ExtResource("2_j6c7q")
+
+[node name="RandomVelocityOnReady" type="Node" parent="Behaviours"]
+script = ExtResource("2_j6c7q")

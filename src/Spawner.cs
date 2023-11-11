@@ -16,8 +16,12 @@ partial class Spawner: Node {
         foreach (var pt in spawnPts) {
             var root = sceneToSpawn.Instantiate();
             agentParent.AddChild(root);
-            if (root is Node2D node2D) {
-                node2D.Position = pt * GetViewport().GetVisibleRect().Size;
+            if (root is AgentDependencies deps) {
+                if (deps.GetNodeOrNull<RigidBody2D>() is {} rb) {
+                    rb.Position = pt * GetViewport().GetVisibleRect().Size;
+                } else if (root is Node2D node2D) {
+                    node2D.Position = pt * GetViewport().GetVisibleRect().Size;
+                }
             }
         }
     }
