@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://djqxn24jlsgxg"]
 
-[ext_resource type="Script" path="res://src/Main.cs" id="1_pge4r"]
-[ext_resource type="Material" uid="uid://de5ipokcbknrg" path="res://materials/DisplayMaterial.tres" id="2_s4lil"]
+[ext_resource type="Script" path="res://src/Main.cs" id="1_tsxt1"]
+[ext_resource type="Material" uid="uid://de5ipokcbknrg" path="res://materials/DisplayMaterial.tres" id="2_yim5p"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("worldViewport", "displayRect", "backgroundRect")]
 texture_filter = 1
-script = ExtResource("1_pge4r")
+script = ExtResource("1_tsxt1")
 worldViewport = NodePath("WorldViewport")
 displayRect = NodePath("Display/DisplayRect")
 backgroundRect = NodePath("WorldViewport/WorldCanvas/BackgroundRect")
@@ -27,7 +27,7 @@ grow_vertical = 2
 [node name="Display" type="CanvasLayer" parent="."]
 
 [node name="DisplayRect" type="ColorRect" parent="Display"]
-material = ExtResource("2_s4lil")
+material = ExtResource("2_yim5p")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
