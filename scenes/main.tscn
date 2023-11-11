@@ -36,7 +36,7 @@ grow_vertical = 2
 [node name="Spawner" type="Node" parent="WorldViewport/WorldCanvas" node_paths=PackedStringArray("agentParent")]
 script = ExtResource("3_cn8v4")
 agentParent = NodePath("../AGENTS GO IN HERE!")
-sceneToSpawn = ExtResource("4_vl2t3")
+scenesToSpawn = Array[PackedScene]([ExtResource("4_vl2t3")])
 
 [node name="Display" type="CanvasLayer" parent="."]
 

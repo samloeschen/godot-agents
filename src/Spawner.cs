@@ -5,7 +5,7 @@ partial class Spawner: Node {
 	[Export] public uint seed = 1;
 	[Export] public Node agentParent;
 
-	[Export] public PackedScene sceneToSpawn;
+	[Export] public PackedScene[] scenesToSpawn;
 	Vector2[] spawnPts;
 
 	public override void _Ready() {
@@ -13,8 +13,11 @@ partial class Spawner: Node {
 		spawnPts = new Vector2[numSpawnPoints];
 		BlueNoisePoints.GenerateBlueNoiseSamplePoints(ref spawnPts, seed);
 
+        int idx = 0;
 		foreach (var pt in spawnPts) {
-			var root = sceneToSpawn.Instantiate();
+			var root = scenesToSpawn[idx].Instantiate();
+
+            idx = (idx + 1) % scenesToSpawn.Length;
 			agentParent.AddChild(root);
 			if (root is AgentDependencies deps) {
 				if (deps.GetNodeOrNull<RigidBody2D>() is {} rb) {
