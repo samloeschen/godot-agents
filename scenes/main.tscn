@@ -12,15 +12,12 @@ resource_local_to_scene = true
 shader = ExtResource("2_nrbq1")
 shader_parameter/src = SubResource("ViewportTexture_33dwi")
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("worldViewport", "displayRect", "backgroundRect")]
+[node name="Main" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_tsxt1")
-worldViewport = NodePath("WorldViewport")
-displayRect = NodePath("Display/DisplayRect")
-backgroundRect = NodePath("WorldViewport/WorldCanvas/BackgroundRect")
 
 [node name="WorldViewport" type="SubViewport" parent="."]
-size = Vector2i(32, 32)
+size = Vector2i(128, 128)
 
 [node name="WorldCanvas" type="CanvasLayer" parent="WorldViewport"]
 
