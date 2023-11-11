@@ -1,9 +1,11 @@
 using Godot;
+using System;
 
 public partial class PositionWrap : Node, IBehaviourNode
 {
 	private AgentDependencies deps;
 	private Vector2 agentSize;
+	public event Action<Node> Wrapped;
 
 	public void Init(AgentDependencies deps)
 	{
@@ -36,5 +38,7 @@ public partial class PositionWrap : Node, IBehaviourNode
 		if (y < 0 - halfY) y += screen.Y + this.agentSize.Y;
 
 		rb.Position = new Vector2(x, y);
+
+		Wrapped?.Invoke(this);
 	}
 }
