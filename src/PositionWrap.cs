@@ -37,8 +37,9 @@ public partial class PositionWrap : Node, IBehaviourNode
 		if (y > screen.Y + halfY) y -= screen.Y + this.agentSize.Y;
 		if (y < 0 - halfY) y += screen.Y + this.agentSize.Y;
 
-		rb.Position = new Vector2(x, y);
+		var newPos = new Vector2(x, y);
+		if (rb.Position != newPos) Wrapped?.Invoke(this);
 
-		Wrapped?.Invoke(this);
+		rb.Position = new Vector2(x, y);
 	}
 }
