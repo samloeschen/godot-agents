@@ -17,4 +17,4 @@ partial class Main: Node {
         };
         backgroundRect.Material = uvTestMat;
     }
-}
+}   

@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://djqxn24jlsgxg"]
+[gd_scene load_steps=6 format=3 uid="uid://djqxn24jlsgxg"]
 
 [ext_resource type="Script" path="res://src/Main.cs" id="1_tsxt1"]
-[ext_resource type="Material" uid="uid://de5ipokcbknrg" path="res://materials/DisplayMaterial.tres" id="2_yim5p"]
+[ext_resource type="Material" uid="uid://5lkkaquwo8ti" path="res://shaders/Background.tres" id="2_grwpl"]
+[ext_resource type="Shader" path="res://shaders/Viewport.gdshader" id="2_nrbq1"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_33dwi"]
+viewport_path = NodePath("WorldViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ogjjx"]
+resource_local_to_scene = true
+shader = ExtResource("2_nrbq1")
+shader_parameter/src = SubResource("ViewportTexture_33dwi")
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("worldViewport", "displayRect", "backgroundRect")]
 texture_filter = 1
@@ -11,13 +20,14 @@ displayRect = NodePath("Display/DisplayRect")
 backgroundRect = NodePath("WorldViewport/WorldCanvas/BackgroundRect")
 
 [node name="WorldViewport" type="SubViewport" parent="."]
-size = Vector2i(128, 128)
+size = Vector2i(32, 32)
 
 [node name="WorldCanvas" type="CanvasLayer" parent="WorldViewport"]
 
 [node name="AGENTS GO IN HERE!" type="Node" parent="WorldViewport/WorldCanvas"]
 
 [node name="BackgroundRect" type="ColorRect" parent="WorldViewport/WorldCanvas"]
+material = ExtResource("2_grwpl")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -27,7 +37,7 @@ grow_vertical = 2
 [node name="Display" type="CanvasLayer" parent="."]
 
 [node name="DisplayRect" type="ColorRect" parent="Display"]
-material = ExtResource("2_yim5p")
+material = SubResource("ShaderMaterial_ogjjx")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
