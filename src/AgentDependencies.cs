@@ -21,8 +21,8 @@ public partial class AgentDependencies: Node {
                 for (int j = 0; j < nBehaviours; j++) {
                     var behaviour = behaviours.GetChild(j);
                     depsDict.Add(behaviour.GetType(), behaviour);
-                    _agentBehaviours = behaviours;
                 }
+                _agentBehaviours = behaviours;
             }
         }
         {
