@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://dokcqo1ivbvhm" path="res://shaders/Agent1.tres" id="1_hdbdd"]
 [ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="2_j6c7q"]
 [ext_resource type="Script" path="res://src/AgentDetector.cs" id="3_jufu3"]
-[ext_resource type="Script" path="res://src/AgentBehaviours.cs" id="3_mpiex"]
+[ext_resource type="Script" path="res://src/PositionWrap.cs" id="4_u6vor"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_di4hg"]
 
@@ -39,9 +39,12 @@ scale = Vector2(4, 4)
 shape = SubResource("CircleShape2D_d230m")
 
 [node name="Behaviours" type="Node" parent="."]
-script = ExtResource("3_mpiex")
+script = ExtResource("4_u6vor")
 
 [node name="RandomVelocityOnReady" type="Node" parent="Behaviours"]
 script = ExtResource("2_j6c7q")
 initialVelocityMin = 5.0
 initialVelocityMax = 20.0
+
+[node name="Node" type="Node" parent="Behaviours"]
+script = ExtResource("4_u6vor")
