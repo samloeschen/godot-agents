@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c4vb3oskw8bj8"]
+[gd_scene load_steps=16 format=3 uid="uid://c58okjm8g6bta"]
 
 [ext_resource type="Script" path="res://src/AgentDependencies.cs" id="1_iu5b4"]
 [ext_resource type="Texture2D" uid="uid://58hb17wnperj" path="res://sprites/CellSprite_Body_HD.png" id="2_jcflt"]
@@ -9,8 +9,9 @@
 [ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="7_m1vsu"]
 [ext_resource type="Script" path="res://src/AgentGoal.cs" id="8_5crhl"]
 [ext_resource type="Script" path="res://src/RandomGoal.cs" id="9_o16m2"]
+[ext_resource type="Script" path="res://src/BorderPush.cs" id="9_p0apn"]
 [ext_resource type="Script" path="res://src/AgentMovementLinear.cs" id="10_um7cw"]
-[ext_resource type="PackedScene" uid="uid://vuq4ebkd15qt" path="res://scenes/Connector.tscn" id="11_d4124"]
+[ext_resource type="PackedScene" uid="uid://b5sblo1nlclo8" path="res://scenes/Connector.tscn" id="11_d4124"]
 [ext_resource type="Script" path="res://src/Blinker.cs" id="12_nh08f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_di4hg"]
@@ -128,3 +129,6 @@ accel = 20.0
 script = ExtResource("12_nh08f")
 blinkChance = 0.012
 allowedAxes = 2
+
+[node name="BorderPush" type="Node" parent="Behaviours"]
+script = ExtResource("9_p0apn")

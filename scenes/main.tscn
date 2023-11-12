@@ -6,7 +6,7 @@
 [ext_resource type="Shader" path="res://shaders/Feedback.gdshader" id="3_bdo1k"]
 [ext_resource type="Script" path="res://src/Spawner.cs" id="3_cn8v4"]
 [ext_resource type="Texture2D" uid="uid://dm31w6lik2ifa" path="res://materials/color_palette.png" id="3_nn5x4"]
-[ext_resource type="PackedScene" uid="uid://d2ppwe5u7olpl" path="res://scenes/TyAgent2.tscn" id="4_6kt16"]
+[ext_resource type="PackedScene" uid="uid://c58okjm8g6bta" path="res://scenes/TyAgent2.tscn" id="4_6kt16"]
 [ext_resource type="Script" path="res://src/ConnectionManager.cs" id="5_pdwv1"]
 [ext_resource type="Script" path="res://src/DebugDraw.cs" id="6_3nkyo"]
 [ext_resource type="Shader" path="res://shaders/ViewportBlend.gdshader" id="9_fjp73"]
@@ -89,11 +89,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AGENTS GO IN HERE!" type="Node2D" parent="Game/WorldCanvas"]
+[node name="Agents" type="Node2D" parent="Game/WorldCanvas"]
 
 [node name="Spawner" type="Node" parent="Game/WorldCanvas" node_paths=PackedStringArray("agentParent")]
 script = ExtResource("3_cn8v4")
-agentParent = NodePath("../AGENTS GO IN HERE!")
+agentParent = NodePath("../Agents")
 scenesToSpawn = Array[PackedScene]([ExtResource("4_6kt16")])
 
 [node name="ConnectionManager" type="Node" parent="Game/WorldCanvas"]

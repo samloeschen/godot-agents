@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://vuq4ebkd15qt"]
+[gd_scene load_steps=3 format=3 uid="uid://b5sblo1nlclo8"]
 
 [ext_resource type="Script" path="res://src/AgentConnector.cs" id="1_qegk1"]
 
@@ -14,6 +14,7 @@ alignRotation = true
 shape = SubResource("CircleShape2D_8pioy")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
