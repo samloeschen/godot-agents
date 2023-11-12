@@ -6,6 +6,7 @@ public partial class AgentConnector: Area2D, IBehaviourNode {
     [Export] public int maxConnections = 1;
     [Export] public bool overrideAgentPolarity = false;
     [Export] public int customPolarity = -1;
+    [Export] public bool alignRotation;
 
     List<AgentConnector> _activeConns;
     AgentDependencies _deps;

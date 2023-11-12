@@ -5,12 +5,16 @@ using Godot;
 public partial class ConnectionManager: Node {
     [Export] public float springForce;
     [Export] public float overUnderDamp;
+    
+    [Export] public float angularSpringForce;
+    [Export] public float angularSpringOverUnderDamp;
 
     struct ConnectionInfo {
         public AgentConnector a;
         public AgentConnector b;
         public Vector2 springVel;
         public Vector2 separation;
+        public float angle;
     }
     static List<ConnectionInfo> ActiveConns = new List<ConnectionInfo>(128);
     static Node instance;
@@ -39,16 +43,31 @@ public partial class ConnectionManager: Node {
             pb = conn.b.GlobalPosition;
             Vector2 displacement = pa - pb;
             
-            float dispDist = displacement.Length();
-            float distError = dispDist - conn.separation.Length();
-            Vector2 relativeVel = conn.a.GetVelocity() - conn.b.GetVelocity();
-            
-            float d = overUnderDamp * (2f * Mathf.Sqrt(springForce));
-            Vector2 accel = -(springForce * displacement.Normalized() * distError) - (d * relativeVel);
+            {
+                float dispDist = displacement.Length();
+                float distError = dispDist - conn.separation.Length();
+                Vector2 relativeVel = conn.a.GetVelocity() - conn.b.GetVelocity();
 
-            // Vector2 deltaV = -accel;
-            conn.a.GetAgent().ApplyForce(accel * (float)delta);
-            conn.b.GetAgent().ApplyForce(-accel * (float)delta);
+                float d = overUnderDamp * (2f * Mathf.Sqrt(springForce));
+                Vector2 accel = -(springForce * displacement.Normalized() * distError) - (d * relativeVel);
+
+                // Vector2 deltaV = -accel;
+                conn.a.GetAgent().ApplyForce(accel * (float)delta);
+                conn.b.GetAgent().ApplyForce(-accel * (float)delta);
+            }
+            
+
+            if (conn.a.alignRotation || conn.b.alignRotation) {
+                float d = angularSpringOverUnderDamp * (2f * Mathf.Sqrt(angularSpringForce));
+                float offset = MathUtils.WrapDeltaAngle(conn.a.GetAgent().Rotation - conn.b.GetAgent().Rotation);
+                float distError = offset - conn.angle;
+
+                float relativeVel = conn.a.GetAgent().AngularVelocity - conn.b.GetAgent().AngularVelocity;
+                float accel = -(angularSpringForce * distError) - (d * relativeVel);                
+
+                conn.a.GetAgent().ApplyTorque(accel * (float)delta);
+                conn.b.GetAgent().ApplyTorque(-accel * (float)delta);
+            }
         }
     }
 
@@ -64,6 +83,7 @@ public partial class ConnectionManager: Node {
             b = b,
             springVel = Vector2.Zero,
             separation = (a.GlobalPosition - b.GlobalPosition) * 0.25f,
+            angle = MathUtils.WrapDeltaAngle(a.GetAgent().Rotation - b.GetAgent().Rotation),
         });
     }
 

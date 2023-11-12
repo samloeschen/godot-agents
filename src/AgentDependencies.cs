@@ -1,7 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
+using System;
 using Godot;
 public partial class AgentDependencies: RigidBody2D {
+
+	public event Action<Node, Node> Collision;
 
 	Dictionary<System.Type, List<Node>> depsDict;
 	public T GetNodeOrNull<T>() where T: Node {
@@ -15,6 +17,8 @@ public partial class AgentDependencies: RigidBody2D {
 	}
 	AgentBehaviours _agentBehaviours;
 	public override void _Ready() {
+		BodyEntered += AgentCollision;
+
 		int nChildren = GetChildCount();
 		depsDict = new Dictionary<System.Type, List<Node>>(nChildren) {
 			{ typeof(RigidBody2D), new List<Node>() { this } },
@@ -48,5 +52,9 @@ public partial class AgentDependencies: RigidBody2D {
 				behaviours.InitBehaviours(this);
 			}
 		}
+	}
+
+	public void AgentCollision(Node n) {
+		Collision.Invoke(this, n);
 	}
 }
