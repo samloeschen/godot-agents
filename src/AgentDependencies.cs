@@ -55,6 +55,6 @@ public partial class AgentDependencies: RigidBody2D {
 	}
 
 	public void AgentCollision(Node n) {
-		Collision.Invoke(this, n);
+		Collision?.Invoke(this, n);
 	}
 }
