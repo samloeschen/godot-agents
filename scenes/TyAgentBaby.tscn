@@ -50,10 +50,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -8.56
-offset_top = -8.1951
-offset_right = 7.44
-offset_bottom = 2.8049
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 3.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.43, 0.43)
@@ -69,10 +69,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -5.52
+offset_left = -4.56
 offset_top = -8.6651
-offset_right = 5.48
-offset_bottom = 1.3349
+offset_right = 3.44
+offset_bottom = -1.6651
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.43, 0.43)
@@ -109,7 +109,7 @@ script = ExtResource("6_uoeg4")
 
 [node name="Agent Goal" type="Node" parent="Behaviours"]
 script = ExtResource("7_q3n64")
-goalAccel = 3.38
+goalAccel = 10.0
 
 [node name="RandomGoal" type="Node" parent="Behaviours"]
 script = ExtResource("7_gkh30")
@@ -128,3 +128,4 @@ initialVelocityMax = 20.0
 [node name="Blinker" type="Node" parent="Behaviours"]
 script = ExtResource("9_juch4")
 blinkChance = 0.04
+allowedAxes = 1

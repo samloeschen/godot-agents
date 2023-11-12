@@ -140,4 +140,4 @@ initialVelocityMax = 20.0
 [node name="Blinker" type="Node" parent="Behaviours"]
 script = ExtResource("9_qkiwy")
 blinkChance = 0.01
-blinkSpeed = 0.1
+allowedAxes = 2

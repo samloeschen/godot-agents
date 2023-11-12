@@ -106,6 +106,7 @@ script = ExtResource("7_vd66a")
 [node name="Blinker" type="Node" parent="Behaviours"]
 script = ExtResource("8_k1lmj")
 blinkChance = 0.04
+allowedAxes = 2
 
 [node name="Connector" parent="Behaviours" instance=ExtResource("7_rmlh6")]
 position = Vector2(5.68434e-14, -1)
