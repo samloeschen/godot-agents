@@ -6,16 +6,19 @@ public partial class AgentDependencies: RigidBody2D {
 	Dictionary<System.Type, List<Node>> depsDict;
 	public T GetNodeOrNull<T>() where T: Node {
 		if (depsDict.TryGetValue(typeof(T), out var list)) {
-			return (T)list[0];
+			if (list.Count > 0) {
+				return (T)list[0];
+			}
+			return null;
 		}
 		return null;
 	}
 	AgentBehaviours _agentBehaviours;
 	public override void _Ready() {
 		int nChildren = GetChildCount();
-		depsDict = new System.Collections.Generic.Dictionary<System.Type, List<Node>>(nChildren) {
-			{ typeof(RigidBody2D), new List<Node>() {this} },
-			{ typeof(AgentDependencies), new List<Node>() {this} }
+		depsDict = new Dictionary<System.Type, List<Node>>(nChildren) {
+			{ typeof(RigidBody2D), new List<Node>() { this } },
+			{ typeof(AgentDependencies), new List<Node>() { this } }
 		};
 
 		void AddNode(Node n) {

@@ -1,15 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://cefatncaej0cl"]
+[gd_scene load_steps=11 format=3 uid="uid://cefatncaej0cl"]
 
 [ext_resource type="Script" path="res://src/AgentDependencies.cs" id="1_f57ha"]
 [ext_resource type="Material" uid="uid://dokcqo1ivbvhm" path="res://shaders/Agent1.tres" id="1_hdbdd"]
 [ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="2_j6c7q"]
 [ext_resource type="Script" path="res://src/AgentDetector.cs" id="3_jufu3"]
 [ext_resource type="Script" path="res://src/AgentBehaviours.cs" id="3_mpiex"]
-[ext_resource type="Script" path="res://src/PositionWrap.cs" id="4_u6vor"]
+[ext_resource type="Script" path="res://src/AgentConnector.cs" id="5_3u2u0"]
+[ext_resource type="Script" path="res://src/AgentPolarity.cs" id="8_lxks7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_di4hg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d230m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p4r3x"]
 
 [node name="TestAgent" type="RigidBody2D"]
 gravity_scale = 2.66454e-15
@@ -38,14 +41,68 @@ script = ExtResource("3_jufu3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AgentDetector"]
 scale = Vector2(4, 4)
 shape = SubResource("CircleShape2D_d230m")
+debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="Behaviours" type="Node" parent="."]
+[node name="Behaviours" type="Node2D" parent="."]
 script = ExtResource("3_mpiex")
+
+[node name="AgentConnector" type="Area2D" parent="Behaviours"]
+position = Vector2(7, -7)
+script = ExtResource("5_3u2u0")
+validPolarities = [1]
+
+[node name="Node2D" type="CollisionShape2D" parent="Behaviours/AgentConnector"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.7, 0.7)
+shape = SubResource("CircleShape2D_p4r3x")
+debug_color = Color(0.207843, 0.639216, 0, 0)
+
+[node name="ColorRect2" type="ColorRect" parent="Behaviours/AgentConnector"]
+material = ExtResource("1_hdbdd")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.129412, 1, 1)
+
+[node name="AgentConnector2" type="Area2D" parent="Behaviours"]
+position = Vector2(-7, 9)
+script = ExtResource("5_3u2u0")
+validPolarities = [1]
+
+[node name="Node2D" type="CollisionShape2D" parent="Behaviours/AgentConnector2"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.7, 0.7)
+shape = SubResource("CircleShape2D_p4r3x")
+debug_color = Color(0.207843, 0.639216, 0, 0)
+
+[node name="ColorRect2" type="ColorRect" parent="Behaviours/AgentConnector2"]
+material = ExtResource("1_hdbdd")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.129412, 1, 1)
 
 [node name="RandomVelocityOnReady" type="Node" parent="Behaviours"]
 script = ExtResource("2_j6c7q")
 initialVelocityMin = 5.0
 initialVelocityMax = 20.0
 
-[node name="PositionWrap" type="Node" parent="Behaviours"]
-script = ExtResource("4_u6vor")
+[node name="Polarity" type="Node" parent="Behaviours"]
+script = ExtResource("8_lxks7")
+polarity = 1
