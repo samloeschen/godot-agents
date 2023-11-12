@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://src/AgentBehaviours.cs" id="4_4g7if"]
 [ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="5_s8omf"]
 [ext_resource type="Script" path="res://src/PositionWrap.cs" id="6_tfmlv"]
-[ext_resource type="Script" path="res://src/HideEye.cs" id="9_r3gas"]
+[ext_resource type="Script" path="res://src/Blinker.cs" id="9_qkiwy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_di4hg"]
 
@@ -53,6 +53,7 @@ offset_right = 4.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(0, 5)
 texture = ExtResource("2_3l8uw")
 expand_mode = 1
 
@@ -69,6 +70,7 @@ offset_top = -4.0
 offset_right = 3.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(0, 4)
 texture = ExtResource("2_3l8uw")
 expand_mode = 1
 
@@ -107,5 +109,9 @@ initialVelocityMax = 20.0
 [node name="PositionWrap" type="Node" parent="Behaviours"]
 script = ExtResource("6_tfmlv")
 
-[node name="HideEye" type="Node" parent="Behaviours"]
-script = ExtResource("9_r3gas")
+[node name="Blinker" type="Node" parent="Behaviours"]
+script = ExtResource("9_qkiwy")
+waitTime = 1.345
+
+[node name="BlinkTimer" type="Timer" parent="Behaviours/Blinker"]
+wait_time = 0.5
