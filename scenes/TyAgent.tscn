@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dxab0nnema7yu"]
+[gd_scene load_steps=16 format=3 uid="uid://dxab0nnema7yu"]
 
 [ext_resource type="Script" path="res://src/AgentDependencies.cs" id="1_x7sv5"]
 [ext_resource type="Texture2D" uid="uid://b1tt1jc4vbgo" path="res://sprites/CellSprite_Body.png" id="2_3l8uw"]
@@ -7,9 +7,8 @@
 [ext_resource type="Script" path="res://src/AgentDetector.cs" id="3_0fwft"]
 [ext_resource type="Script" path="res://src/AgentBehaviours.cs" id="4_4g7if"]
 [ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="5_s8omf"]
-[ext_resource type="Script" path="res://src/PositionWrap.cs" id="6_tfmlv"]
 [ext_resource type="Script" path="res://src/AgentPolarity.cs" id="7_2fj8y"]
-[ext_resource type="PackedScene" path="res://scenes/Connector.tscn" id="8_x5gom"]
+[ext_resource type="PackedScene" uid="uid://vuq4ebkd15qt" path="res://scenes/Connector.tscn" id="8_x5gom"]
 [ext_resource type="Script" path="res://src/RandomGoal.cs" id="9_34muj"]
 [ext_resource type="Script" path="res://src/Blinker.cs" id="9_qkiwy"]
 [ext_resource type="Script" path="res://src/AgentMovementLinear.cs" id="10_ekb25"]
@@ -114,11 +113,13 @@ polarity = 1
 position = Vector2(-10, 0)
 scale = Vector2(0.385, 0.385)
 validPolarities = [1]
+alignRotation = false
 
 [node name="Connector2" parent="Behaviours" instance=ExtResource("8_x5gom")]
 position = Vector2(8, -1.19209e-07)
 scale = Vector2(0.385, 0.385)
 validPolarities = [1]
+alignRotation = false
 
 [node name="Lienear movement" type="Node" parent="Behaviours"]
 script = ExtResource("10_ekb25")
@@ -136,11 +137,7 @@ script = ExtResource("5_s8omf")
 initialVelocityMin = 50.0
 initialVelocityMax = 20.0
 
-[node name="PositionWrap" type="Node" parent="Behaviours"]
-script = ExtResource("6_tfmlv")
-
 [node name="Blinker" type="Node" parent="Behaviours"]
 script = ExtResource("9_qkiwy")
 blinkChance = 0.01
 blinkSpeed = 0.1
-allowedAxes = 2

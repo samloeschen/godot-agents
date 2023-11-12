@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dp5vi8qo1mntp"]
+[gd_scene load_steps=14 format=3 uid="uid://dp5vi8qo1mntp"]
 
 [ext_resource type="Script" path="res://src/AgentDependencies.cs" id="1_kwcwh"]
 [ext_resource type="Texture2D" uid="uid://bb0eogfwsuuj7" path="res://sprites/baby.png" id="2_n44q5"]
@@ -6,8 +6,11 @@
 [ext_resource type="Material" uid="uid://dokcqo1ivbvhm" path="res://shaders/Agent1.tres" id="4_pkic6"]
 [ext_resource type="Script" path="res://src/AgentDetector.cs" id="5_xdor8"]
 [ext_resource type="Script" path="res://src/AgentBehaviours.cs" id="6_uoeg4"]
+[ext_resource type="Script" path="res://src/AgentMovementLinear.cs" id="7_512x3"]
+[ext_resource type="Script" path="res://src/RandomGoal.cs" id="7_gkh30"]
+[ext_resource type="Script" path="res://src/AgentGoal.cs" id="7_q3n64"]
 [ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="7_u7040"]
-[ext_resource type="Script" path="res://src/PositionWrap.cs" id="8_hxa1k"]
+[ext_resource type="Script" path="res://src/Blinker.cs" id="9_juch4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_di4hg"]
 
@@ -18,22 +21,25 @@ gravity_scale = 2.66454e-15
 script = ExtResource("1_kwcwh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(0.675, 0.675)
 shape = SubResource("CircleShape2D_di4hg")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(1, 0.929412, 0, 1)
+modulate = Color(0.772549, 1, 0.545098, 1)
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -9.0
-offset_top = -10.0
-offset_right = 8.0
-offset_bottom = 6.0
+offset_left = -4.0
+offset_top = -5.0
+offset_right = 13.0
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.43, 0.43)
 texture = ExtResource("2_n44q5")
 expand_mode = 1
 
@@ -44,29 +50,33 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -9.0
-offset_right = 8.0
-offset_bottom = 2.0
+offset_left = -8.56
+offset_top = -8.1951
+offset_right = 7.44
+offset_bottom = 2.8049
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.43, 0.43)
+pivot_offset = Vector2(8, 6)
 texture = ExtResource("3_4wpm1")
 expand_mode = 1
 
 [node name="Pupil" type="TextureRect" parent="."]
-modulate = Color(0.0627451, 1, 0.552941, 1)
+modulate = Color(0, 1, 0.819608, 1)
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -5.0
-offset_top = -9.0
-offset_right = 6.0
-offset_bottom = 1.0
+offset_left = -5.52
+offset_top = -8.6651
+offset_right = 5.48
+offset_bottom = 1.3349
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.43, 0.43)
+pivot_offset = Vector2(4.86, 6.43)
 texture = ExtResource("3_4wpm1")
 expand_mode = 1
 
@@ -97,10 +107,24 @@ shape = SubResource("CircleShape2D_d230m")
 [node name="Behaviours" type="Node" parent="."]
 script = ExtResource("6_uoeg4")
 
+[node name="Agent Goal" type="Node" parent="Behaviours"]
+script = ExtResource("7_q3n64")
+goalAccel = 3.38
+
+[node name="RandomGoal" type="Node" parent="Behaviours"]
+script = ExtResource("7_gkh30")
+steerRangeDegrees = 5.0
+
+[node name="Linear Movement" type="Node" parent="Behaviours"]
+script = ExtResource("7_512x3")
+maxSpeed = 100.0
+accel = 20.0
+
 [node name="RandomVelocityOnReady" type="Node" parent="Behaviours"]
 script = ExtResource("7_u7040")
 initialVelocityMin = 50.0
 initialVelocityMax = 20.0
 
-[node name="PositionWrap" type="Node" parent="Behaviours"]
-script = ExtResource("8_hxa1k")
+[node name="Blinker" type="Node" parent="Behaviours"]
+script = ExtResource("9_juch4")
+blinkChance = 0.04
