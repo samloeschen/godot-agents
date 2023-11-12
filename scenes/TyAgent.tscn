@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dxab0nnema7yu"]
+[gd_scene load_steps=12 format=3 uid="uid://dxab0nnema7yu"]
 
 [ext_resource type="Script" path="res://src/AgentDependencies.cs" id="1_x7sv5"]
 [ext_resource type="Texture2D" uid="uid://b1tt1jc4vbgo" path="res://sprites/CellSprite_Body.png" id="2_3l8uw"]
@@ -8,15 +8,13 @@
 [ext_resource type="Script" path="res://src/AgentBehaviours.cs" id="4_4g7if"]
 [ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="5_s8omf"]
 [ext_resource type="Script" path="res://src/PositionWrap.cs" id="6_tfmlv"]
-[ext_resource type="Script" path="res://src/HideEye.cs" id="9_r3gas"]
-[ext_resource type="Script" path="res://src/AgentMovementLinear.cs" id="10_ekb25"]
-[ext_resource type="Script" path="res://src/AgentGoal.cs" id="11_uo2om"]
+[ext_resource type="Script" path="res://src/Blinker.cs" id="9_qkiwy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_di4hg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d230m"]
 
-[node name="TestAgent2" type="RigidBody2D"]
+[node name="TestAgent" type="RigidBody2D"]
 gravity_scale = 2.66454e-15
 max_contacts_reported = 1
 contact_monitor = true
@@ -55,6 +53,7 @@ offset_right = 4.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(0, 5)
 texture = ExtResource("2_3l8uw")
 expand_mode = 1
 
@@ -71,6 +70,7 @@ offset_top = -4.0
 offset_right = 3.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(0, 4)
 texture = ExtResource("2_3l8uw")
 expand_mode = 1
 
@@ -109,13 +109,9 @@ initialVelocityMax = 20.0
 [node name="PositionWrap" type="Node" parent="Behaviours"]
 script = ExtResource("6_tfmlv")
 
-[node name="HideEye" type="Node" parent="Behaviours"]
-script = ExtResource("9_r3gas")
+[node name="Blinker" type="Node" parent="Behaviours"]
+script = ExtResource("9_qkiwy")
+waitTime = 1.345
 
-[node name="movement Linear" type="Node" parent="Behaviours"]
-script = ExtResource("10_ekb25")
-maxSpeed = 2.0
-accel = 1.0
-
-[node name="AgentGoal" type="Node" parent="Behaviours"]
-script = ExtResource("11_uo2om")
+[node name="BlinkTimer" type="Timer" parent="Behaviours/Blinker"]
+wait_time = 0.5
