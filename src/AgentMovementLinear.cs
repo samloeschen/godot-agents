@@ -16,12 +16,14 @@ public partial class AgentMovementLinear: Node, IBehaviourNode {
             _goal: {} goal,
             _rb: {} rb,
         }) {
-            rb.LinearVelocity += accel * goal.GoalDir * goal.Throttle;
-            var deltaV = accel * goal.GoalDir;
+            // rb.LinearVelocity += accel * goal.GoalDir * goal.Throttle;
+            var deltaV = accel * -goal.GoalDir;
             var currSpd = rb.LinearVelocity.Length();
-            if (currSpd + deltaV.Length() < maxSpeed || (rb.LinearVelocity + deltaV).Length() < currSpd) {
-                rb.LinearVelocity = rb.LinearVelocity.Normalized() * maxSpeed;
+            var newSpd = currSpd + deltaV.Length();
+            if (newSpd < maxSpeed || newSpd < currSpd) {
+                
             }
+            rb.ApplyForce(deltaV);
         }
     }
 
