@@ -34,7 +34,7 @@ public partial class AgentMovementLinear: Node, IBehaviourNode {
         }) {
 
             var p = rb.GlobalPosition.ToVector3();
-            DebugDraw.Line(p, p + goal.GoalDir.ToVector3() * goal.Throttle * 10f, Colors.Red, Colors.White);
+            // DebugDraw.Line(p, p + goal.GoalDir.ToVector3() * goal.Throttle * 10f, Colors.Red, Colors.White);
 
             // DebugDraw.Line(Vector3.Zero, goal.GoalDir.ToVector3(), Colors.Red);
 

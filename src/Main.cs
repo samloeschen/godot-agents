@@ -7,27 +7,36 @@ partial class Main : Node
 
     public override void _Process(double delta)
     {
-        var mouse = GetViewport().GetMousePosition();
+        var mousePos = GetViewport().GetMousePosition();
+        var windowSize = GetViewport().GetVisibleRect().Size;
+        var mouse = new Vector2(
+            (mousePos.X / windowSize.X) * 128,
+            (mousePos.Y / windowSize.Y) * 128
+        );
+
+        // if (this.target != null)
+        // {
+        //     DebugDraw.Line(this.target.Position.ToVector3(), mouse.ToVector3(), Colors.Green);
+        // }
 
         if (Input.IsActionJustPressed("user-input")) SetTarget(mouse);
-        if (Input.IsActionPressed("user-input")) {
-            if (this.target == null) {
-                GD.Print("No target!");
-                return;
-            }
+        if (Input.IsActionPressed("user-input"))
+        {
+            if (this.target == null) return;
 
-            GD.Print($"{mouse} - {this.target.Position}");
+
             var force = mouse - this.target.Position;
             force = force.Normalized();
-            this.target.ApplyForce(force * 100);
-        } else {
+            this.target.ApplyForce(force * 10);
+        }
+        else
+        {
             this.target = null;
         }
     }
 
     private void SetTarget(Vector2 pos)
     {
-        GD.Print($"Getting closest agent to: {pos}");
         if (this.target == null)
         {
             this.target = this
@@ -37,7 +46,6 @@ partial class Main : Node
         // There are no agents
         if (this.target == null)
         {
-            GD.Print("There are no agents");
             return;
         }
 
@@ -45,12 +53,7 @@ partial class Main : Node
         {
             var curDist = pos.DistanceTo(this.target.Position);
             var newDist = pos.DistanceTo(agent.Position);
-            if (newDist < curDist) {
-                GD.Print($"Accepting {agent.Position}");
-                this.target = agent;
-            } else {
-                GD.Print($"Rejecting {agent.Position}");
-            }
+            if (newDist < curDist) this.target = agent;
         }
     }
 }
