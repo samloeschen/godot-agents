@@ -27,10 +27,11 @@ partial class Spawner: Node {
 				}
 			}
 		}
+
+		seed++;
 	}
 
     public override void _Process(double delta) {
-
 		var p = GetViewport().GetVisibleRect().GetCenter().ToVector3();
         DebugDraw.Line(p, p + Vector2.Up.ToVector3() * 10f, Colors.Red, Colors.White);
     }
