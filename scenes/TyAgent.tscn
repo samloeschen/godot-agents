@@ -141,7 +141,4 @@ script = ExtResource("6_tfmlv")
 
 [node name="Blinker" type="Node" parent="Behaviours"]
 script = ExtResource("9_qkiwy")
-waitTime = 1.345
-
-[node name="BlinkTimer" type="Timer" parent="Behaviours/Blinker"]
-wait_time = 0.5
+blinkChance = 0.01
