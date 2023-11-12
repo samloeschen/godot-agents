@@ -67,11 +67,12 @@ void fragment() {
 	
 	
 	if (n < 1.0 && c.a < 1.0) {
-		c *= 0.5;
-	} else {
-		c *= 0.97;
+		c.a -= 0.15;
 	}
-	
 
+	c *= 0.95;
+	if (c.a < 0.01) {
+		c = vec4(0);
+	}
 	COLOR.rgba = c;//vec4(vec3(n), 1.0);
 }
