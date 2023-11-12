@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c4vb3oskw8bj8"]
+[gd_scene load_steps=15 format=3 uid="uid://c4vb3oskw8bj8"]
 
 [ext_resource type="Script" path="res://src/AgentDependencies.cs" id="1_iu5b4"]
 [ext_resource type="Texture2D" uid="uid://58hb17wnperj" path="res://sprites/CellSprite_Body_HD.png" id="2_jcflt"]
@@ -7,6 +7,11 @@
 [ext_resource type="Script" path="res://src/AgentDetector.cs" id="5_0qnbr"]
 [ext_resource type="Script" path="res://src/AgentBehaviours.cs" id="6_k0oba"]
 [ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="7_m1vsu"]
+[ext_resource type="Script" path="res://src/AgentGoal.cs" id="8_5crhl"]
+[ext_resource type="Script" path="res://src/RandomGoal.cs" id="9_o16m2"]
+[ext_resource type="Script" path="res://src/AgentMovementLinear.cs" id="10_um7cw"]
+[ext_resource type="PackedScene" uid="uid://vuq4ebkd15qt" path="res://scenes/Connector.tscn" id="11_d4124"]
+[ext_resource type="Script" path="res://src/Blinker.cs" id="12_nh08f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_di4hg"]
 
@@ -49,6 +54,7 @@ offset_right = 4.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(3, 3.3)
 texture = ExtResource("3_oi6a5")
 expand_mode = 1
 
@@ -65,6 +71,7 @@ offset_top = -4.0
 offset_right = 3.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(2, 2.2)
 texture = ExtResource("3_oi6a5")
 expand_mode = 1
 
@@ -95,7 +102,29 @@ shape = SubResource("CircleShape2D_d230m")
 [node name="Behaviours" type="Node2D" parent="."]
 script = ExtResource("6_k0oba")
 
+[node name="Connector" parent="Behaviours" instance=ExtResource("11_d4124")]
+position = Vector2(-1, -10)
+customPolarity = 1
+
 [node name="RandomVelocityOnReady" type="Node" parent="Behaviours"]
 script = ExtResource("7_m1vsu")
 initialVelocityMin = 50.0
-initialVelocityMax = 20.0
+initialVelocityMax = 50.0
+
+[node name="Agent Goal" type="Node" parent="Behaviours"]
+script = ExtResource("8_5crhl")
+goalAccel = 10.0
+
+[node name="RandomGoal" type="Node" parent="Behaviours"]
+script = ExtResource("9_o16m2")
+steerRangeDegrees = 5.0
+
+[node name="Linear Movement" type="Node" parent="Behaviours"]
+script = ExtResource("10_um7cw")
+maxSpeed = 50.0
+accel = 20.0
+
+[node name="Blinker" type="Node" parent="Behaviours"]
+script = ExtResource("12_nh08f")
+blinkChance = 0.012
+allowedAxes = 2
