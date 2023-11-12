@@ -1,0 +1,139 @@
+[gd_scene load_steps=15 format=3 uid="uid://d2x7rbt01ntxg"]
+
+[ext_resource type="Script" path="res://src/AgentDependencies.cs" id="1_31ka1"]
+[ext_resource type="Texture2D" uid="uid://dosknr4espsl4" path="res://sprites/leaf.png" id="2_x0j3w"]
+[ext_resource type="Texture2D" uid="uid://b1tt1jc4vbgo" path="res://sprites/CellSprite_Body.png" id="3_dtxf2"]
+[ext_resource type="Material" uid="uid://dokcqo1ivbvhm" path="res://shaders/Agent1.tres" id="4_sab8n"]
+[ext_resource type="Script" path="res://src/AgentDetector.cs" id="5_rixjd"]
+[ext_resource type="Script" path="res://src/AgentBehaviours.cs" id="6_x0lyw"]
+[ext_resource type="Script" path="res://src/AgentGoal.cs" id="7_gxaup"]
+[ext_resource type="Script" path="res://src/Blinker.cs" id="8_l142r"]
+[ext_resource type="PackedScene" uid="uid://vuq4ebkd15qt" path="res://scenes/Connector.tscn" id="9_nng60"]
+[ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="10_2t3m3"]
+[ext_resource type="Script" path="res://src/AgentMovementLinear.cs" id="11_ff0gp"]
+[ext_resource type="Script" path="res://src/RandomGoal.cs" id="12_qrw5h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_di4hg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d230m"]
+
+[node name="TestAgent2" type="RigidBody2D"]
+gravity_scale = 2.66454e-15
+script = ExtResource("1_31ka1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_di4hg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.666667, 1, 0.152941, 1)
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -10.0
+offset_right = 8.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_x0j3w")
+expand_mode = 1
+
+[node name="Eye" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -9.0
+offset_right = 3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.005, 1)
+pivot_offset = Vector2(3, 3.3)
+texture = ExtResource("3_dtxf2")
+expand_mode = 1
+
+[node name="Pupil" type="TextureRect" parent="."]
+modulate = Color(0, 1, 1, 1)
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -8.0
+offset_right = 2.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(2, 2.2)
+texture = ExtResource("3_dtxf2")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = ExtResource("4_sab8n")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -16.0
+offset_right = 15.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.129412, 1, 1)
+
+[node name="AgentDetector" type="Area2D" parent="."]
+script = ExtResource("5_rixjd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AgentDetector"]
+visible = false
+scale = Vector2(4, 4)
+shape = SubResource("CircleShape2D_d230m")
+
+[node name="Behaviours" type="Node2D" parent="."]
+script = ExtResource("6_x0lyw")
+
+[node name="Agent Goal" type="Node" parent="Behaviours"]
+script = ExtResource("7_gxaup")
+
+[node name="Blinker" type="Node" parent="Behaviours"]
+script = ExtResource("8_l142r")
+blinkChance = 0.04
+
+[node name="Connector" parent="Behaviours" instance=ExtResource("9_nng60")]
+position = Vector2(-5.68434e-14, 10)
+rotation = 0.820305
+scale = Vector2(0.79, 0.79)
+maxConnections = 10
+overrideAgentPolarity = true
+customPolarity = 1
+alignRotation = false
+
+[node name="RandomVelocityOnReady" type="Node" parent="Behaviours"]
+script = ExtResource("10_2t3m3")
+initialVelocityMin = 50.0
+initialVelocityMax = 20.0
+
+[node name="Lienear movement" type="Node" parent="Behaviours"]
+script = ExtResource("11_ff0gp")
+maxSpeed = 10.0
+accel = 4.0
+
+[node name="Random Goal" type="Node" parent="Behaviours"]
+script = ExtResource("12_qrw5h")
+
+[node name="RandomVelocityOnReady2" type="Node" parent="Behaviours"]
+script = ExtResource("10_2t3m3")
+initialVelocityMin = 50.0
+initialVelocityMax = 20.0

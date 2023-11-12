@@ -8,8 +8,8 @@
 [ext_resource type="Script" path="res://src/AgentBehaviours.cs" id="6_0tqyb"]
 [ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="7_mencn"]
 [ext_resource type="PackedScene" uid="uid://vuq4ebkd15qt" path="res://scenes/Connector.tscn" id="7_rmlh6"]
+[ext_resource type="Script" path="res://src/AgentGoal.cs" id="7_vd66a"]
 [ext_resource type="Script" path="res://src/Blinker.cs" id="8_k1lmj"]
-[ext_resource type="Script" path="res://src/PositionWrap.cs" id="8_nnaea"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_di4hg"]
 
@@ -52,6 +52,7 @@ offset_right = 4.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(3, 3.3)
 texture = ExtResource("3_0067j")
 expand_mode = 1
 
@@ -68,6 +69,7 @@ offset_top = -4.0
 offset_right = 3.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(2, 2.2)
 texture = ExtResource("3_0067j")
 expand_mode = 1
 
@@ -98,8 +100,8 @@ shape = SubResource("CircleShape2D_d230m")
 [node name="Behaviours" type="Node2D" parent="."]
 script = ExtResource("6_0tqyb")
 
-[node name="PositionWrap2" type="Node" parent="Behaviours"]
-script = ExtResource("8_nnaea")
+[node name="Agent Goal" type="Node" parent="Behaviours"]
+script = ExtResource("7_vd66a")
 
 [node name="Blinker" type="Node" parent="Behaviours"]
 script = ExtResource("8_k1lmj")
@@ -111,12 +113,10 @@ rotation = 0.820305
 scale = Vector2(0.79, 0.79)
 maxConnections = 10
 overrideAgentPolarity = true
-customPolarity = 10
+customPolarity = 1
+alignRotation = false
 
 [node name="RandomVelocityOnReady" type="Node" parent="Behaviours"]
 script = ExtResource("7_mencn")
 initialVelocityMin = 50.0
 initialVelocityMax = 20.0
-
-[node name="PositionWrap" type="Node" parent="Behaviours"]
-script = ExtResource("8_nnaea")
