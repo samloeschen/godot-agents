@@ -5,7 +5,7 @@
 [ext_resource type="Shader" path="res://shaders/Viewport.gdshader" id="2_nrbq1"]
 [ext_resource type="Script" path="res://src/Spawner.cs" id="3_cn8v4"]
 [ext_resource type="PackedScene" uid="uid://cefatncaej0cl" path="res://scenes/TestAgent.tscn" id="4_vl2t3"]
-[ext_resource type="PackedScene" uid="uid://5wfh1jlqh32u" path="res://scenes/TyAgent.tscn" id="5_d86ep"]
+[ext_resource type="PackedScene" uid="uid://dxab0nnema7yu" path="res://scenes/TyAgent.tscn" id="5_d86ep"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_33dwi"]
 viewport_path = NodePath("WorldViewport")

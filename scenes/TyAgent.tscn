@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dxab0nnema7yu"]
+[gd_scene load_steps=12 format=3 uid="uid://dxab0nnema7yu"]
 
 [ext_resource type="Script" path="res://src/AgentDependencies.cs" id="1_x7sv5"]
 [ext_resource type="Texture2D" uid="uid://b1tt1jc4vbgo" path="res://sprites/CellSprite_Body.png" id="2_3l8uw"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://src/AgentBehaviours.cs" id="4_4g7if"]
 [ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="5_s8omf"]
 [ext_resource type="Script" path="res://src/PositionWrap.cs" id="6_tfmlv"]
+[ext_resource type="Script" path="res://src/HideEye.cs" id="9_r3gas"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_di4hg"]
 
@@ -15,6 +16,8 @@
 
 [node name="TestAgent" type="RigidBody2D"]
 gravity_scale = 2.66454e-15
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("1_x7sv5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -103,3 +106,6 @@ initialVelocityMax = 20.0
 
 [node name="PositionWrap" type="Node" parent="Behaviours"]
 script = ExtResource("6_tfmlv")
+
+[node name="HideEye" type="Node" parent="Behaviours"]
+script = ExtResource("9_r3gas")
