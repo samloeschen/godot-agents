@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://djqxn24jlsgxg"]
+[gd_scene load_steps=14 format=3 uid="uid://djqxn24jlsgxg"]
 
 [ext_resource type="Script" path="res://src/Main.cs" id="1_tsxt1"]
 [ext_resource type="Material" uid="uid://5lkkaquwo8ti" path="res://shaders/Background.tres" id="2_grwpl"]
 [ext_resource type="Shader" path="res://shaders/Viewport.gdshader" id="2_nrbq1"]
 [ext_resource type="Script" path="res://src/Spawner.cs" id="3_cn8v4"]
-[ext_resource type="PackedScene" path="res://scenes/TyAgent2.tscn" id="4_6kt16"]
+[ext_resource type="PackedScene" uid="uid://d2ppwe5u7olpl" path="res://scenes/TyAgent2.tscn" id="4_6kt16"]
 [ext_resource type="PackedScene" uid="uid://dxab0nnema7yu" path="res://scenes/TyAgent.tscn" id="5_d86ep"]
 [ext_resource type="Script" path="res://src/ConnectionManager.cs" id="5_pdwv1"]
 [ext_resource type="Script" path="res://src/DebugDraw.cs" id="6_3nkyo"]
@@ -24,6 +24,8 @@ viewport_path = NodePath("WorldViewport")
 resource_local_to_scene = true
 shader = ExtResource("2_nrbq1")
 shader_parameter/src = SubResource("ViewportTexture_33dwi")
+
+[sub_resource type="Environment" id="Environment_rmma7"]
 
 [node name="Main" type="Node2D"]
 texture_filter = 1
@@ -75,6 +77,7 @@ size = Vector2i(128, 128)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 10)
+environment = SubResource("Environment_rmma7")
 projection = 1
 size = 128.0
 

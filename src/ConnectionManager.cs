@@ -34,8 +34,6 @@ public partial class ConnectionManager: Node {
             DebugDraw.Line(pa.ToVector3(), pb.ToVector3(), Colors.Green);
             // GD.Print($"a: { pa } b: { pb}");
         }
-
-        // DebugDraw.Line(Vector3.Down * 10, Vector3.Up * 10, Colors.Green);
     }
 
     public override void _PhysicsProcess(double delta) {

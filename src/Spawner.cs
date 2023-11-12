@@ -30,6 +30,8 @@ partial class Spawner: Node {
 	}
 
     public override void _Process(double delta) {
-        DebugDraw.Line(Vector2.Down.ToVector3() * 10f, Vector2.Up.ToVector3() * 10f, Colors.AliceBlue);
+
+		var p = GetViewport().GetVisibleRect().GetCenter().ToVector3();
+        DebugDraw.Line(p, p + Vector2.Up.ToVector3() * 10f, Colors.Red, Colors.White);
     }
 }

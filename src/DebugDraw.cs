@@ -19,7 +19,12 @@ public static void Line(Vector3 A, Vector3 B, Color color1, Color color2, float 
         mesh.SurfaceBegin(Mesh.PrimitiveType.Lines);
         mesh.SurfaceSetColor(color1);
 
-        GD.Print($"{A} {B}");
+        A = A - root.GetViewport().GetVisibleRect().GetCenter().ToVector3();
+        B = B - root.GetViewport().GetVisibleRect().GetCenter().ToVector3();
+
+        A.Y *= -1f;
+        B.Y *= -1f;
+
         mesh.SurfaceAddVertex(A);
         mesh.SurfaceSetColor(color2);
         mesh.SurfaceAddVertex(B);
