@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://djqxn24jlsgxg"]
+[gd_scene load_steps=24 format=3 uid="uid://djqxn24jlsgxg"]
 
 [ext_resource type="Script" path="res://src/Main.cs" id="1_tsxt1"]
 [ext_resource type="Shader" path="res://shaders/Background.gdshader" id="2_58830"]
@@ -20,7 +20,7 @@ shader = ExtResource("2_nrbq1")
 shader_parameter/src = SubResource("ViewportTexture_ksiqp")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_4miyq"]
-viewport_path = NodePath("Blit2")
+viewport_path = NodePath("Blit")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uw4oa"]
 resource_local_to_scene = true
@@ -35,14 +35,6 @@ resource_local_to_scene = true
 shader = ExtResource("3_bdo1k")
 shader_parameter/srcA = SubResource("ViewportTexture_4i5ws")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_c2x4m"]
-viewport_path = NodePath("Blit")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_42bcj"]
-resource_local_to_scene = true
-shader = ExtResource("3_bdo1k")
-shader_parameter/srcA = SubResource("ViewportTexture_c2x4m")
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_val6n"]
 viewport_path = NodePath("Game")
 
@@ -53,7 +45,7 @@ shader_parameter/src = SubResource("ViewportTexture_val6n")
 shader_parameter/pal = ExtResource("3_nn5x4")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_mbqnm"]
-viewport_path = NodePath("Blit2")
+viewport_path = NodePath("Blit")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dimmf"]
 resource_local_to_scene = true
@@ -117,18 +109,6 @@ size = Vector2i(128, 128)
 
 [node name="ColorRect" type="ColorRect" parent="Blit"]
 material = SubResource("ShaderMaterial_4kdhj")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Blit2" type="SubViewport" parent="."]
-transparent_bg = true
-size = Vector2i(128, 128)
-
-[node name="ColorRect" type="ColorRect" parent="Blit2"]
-material = SubResource("ShaderMaterial_42bcj")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
