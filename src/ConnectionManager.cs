@@ -28,7 +28,7 @@ public partial class ConnectionManager: Node {
 			var pa = conn.a.GlobalPosition;
 			var pb = conn.b.GlobalPosition;
 
-			DebugDraw.Line(pa.ToVector3(), pb.ToVector3(), Colors.Green);
+			DebugDraw.Line(pa.ToVector3(), pb.ToVector3(), Colors.FloralWhite);
 			// GD.Print($"a: { pa } b: { pb}");
 		}
 	}
