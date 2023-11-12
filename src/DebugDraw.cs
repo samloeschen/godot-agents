@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using Godot;
 public partial class DebugDraw: Node {
 
@@ -17,6 +18,8 @@ public static void Line(Vector3 A, Vector3 B, Color color1, Color color2, float 
         var (mesh, node) = GetInstances();
         mesh.SurfaceBegin(Mesh.PrimitiveType.Lines);
         mesh.SurfaceSetColor(color1);
+
+        GD.Print($"{A} {B}");
         mesh.SurfaceAddVertex(A);
         mesh.SurfaceSetColor(color2);
         mesh.SurfaceAddVertex(B);
