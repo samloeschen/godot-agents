@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c4vb3oskw8bj8"]
+[gd_scene load_steps=11 format=3 uid="uid://c58okjm8g6bta"]
 
 [ext_resource type="Script" path="res://src/AgentDependencies.cs" id="1_iu5b4"]
 [ext_resource type="Texture2D" uid="uid://58hb17wnperj" path="res://sprites/CellSprite_Body_HD.png" id="2_jcflt"]
