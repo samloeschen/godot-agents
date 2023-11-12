@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://5lkkaquwo8ti" path="res://shaders/Background.tres" id="2_grwpl"]
 [ext_resource type="Shader" path="res://shaders/Viewport.gdshader" id="2_nrbq1"]
 [ext_resource type="Script" path="res://src/Spawner.cs" id="3_cn8v4"]
-[ext_resource type="PackedScene" uid="uid://d2ppwe5u7olpl" path="res://scenes/TyAgent2.tscn" id="4_6kt16"]
+[ext_resource type="PackedScene" uid="uid://c4vb3oskw8bj8" path="res://scenes/TyAgent2.tscn" id="4_6kt16"]
 [ext_resource type="PackedScene" uid="uid://dxab0nnema7yu" path="res://scenes/TyAgent.tscn" id="5_d86ep"]
 [ext_resource type="Script" path="res://src/ConnectionManager.cs" id="5_pdwv1"]
 [ext_resource type="Script" path="res://src/DebugDraw.cs" id="6_3nkyo"]
@@ -61,6 +61,10 @@ scenesToSpawn = Array[PackedScene]([ExtResource("4_6kt16"), ExtResource("5_d86ep
 
 [node name="ConnectionManager" type="Node" parent="WorldViewport/WorldCanvas"]
 script = ExtResource("5_pdwv1")
+springForce = 1000.0
+overUnderDamp = 1.0
+angularSpringForce = 1000.0
+angularSpringOverUnderDamp = 1.0
 
 [node name="Display" type="CanvasLayer" parent="."]
 

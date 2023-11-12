@@ -93,7 +93,7 @@ visible = false
 scale = Vector2(4, 4)
 shape = SubResource("CircleShape2D_d230m")
 
-[node name="Behaviours" type="Node" parent="."]
+[node name="Behaviours" type="Node2D" parent="."]
 script = ExtResource("6_k0oba")
 
 [node name="RandomVelocityOnReady" type="Node" parent="Behaviours"]

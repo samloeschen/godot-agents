@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://vuq4ebkd15qt"]
+
+[ext_resource type="Script" path="res://src/AgentConnector.cs" id="1_qegk1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8pioy"]
+radius = 8.06226
+
+[node name="Connector" type="Area2D"]
+script = ExtResource("1_qegk1")
+validPolarities = [null]
+alignRotation = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8pioy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
