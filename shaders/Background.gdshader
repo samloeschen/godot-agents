@@ -1,5 +1,8 @@
 shader_type canvas_item;
+
+uniform sampler2D src : source_color, filter_nearest;
 uniform sampler2D pal : source_color, filter_nearest;
+
 
 #define iTime TIME * 0.5
 
@@ -34,7 +37,8 @@ void fragment() {
 		color -= palette * (1.0 - smoothstep(rad * fuzz, rad, dis )) * f * 0.35 * step(dis, rad * 0.8);
     }
 	
-	COLOR.rgba = vec4(color, 1.0);
+	
+	COLOR.rgba =  vec4(color, 1.0);
 	
 	
 }

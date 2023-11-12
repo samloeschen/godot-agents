@@ -1,13 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://djqxn24jlsgxg"]
+[gd_scene load_steps=26 format=3 uid="uid://djqxn24jlsgxg"]
 
 [ext_resource type="Script" path="res://src/Main.cs" id="1_tsxt1"]
-[ext_resource type="Material" uid="uid://5lkkaquwo8ti" path="res://shaders/Background.tres" id="2_grwpl"]
+[ext_resource type="Shader" path="res://shaders/Background.gdshader" id="2_58830"]
 [ext_resource type="Shader" path="res://shaders/Viewport.gdshader" id="2_nrbq1"]
+[ext_resource type="Shader" path="res://shaders/Feedback.gdshader" id="3_bdo1k"]
 [ext_resource type="Script" path="res://src/Spawner.cs" id="3_cn8v4"]
-[ext_resource type="PackedScene" uid="uid://c4vb3oskw8bj8" path="res://scenes/TyAgent2.tscn" id="4_6kt16"]
-[ext_resource type="PackedScene" uid="uid://dxab0nnema7yu" path="res://scenes/TyAgent.tscn" id="5_d86ep"]
+[ext_resource type="Texture2D" uid="uid://dm31w6lik2ifa" path="res://materials/color_palette.png" id="3_nn5x4"]
+[ext_resource type="PackedScene" uid="uid://d2ppwe5u7olpl" path="res://scenes/TyAgent2.tscn" id="4_6kt16"]
 [ext_resource type="Script" path="res://src/ConnectionManager.cs" id="5_pdwv1"]
 [ext_resource type="Script" path="res://src/DebugDraw.cs" id="6_3nkyo"]
+[ext_resource type="Shader" path="res://shaders/ViewportBlend.gdshader" id="9_fjp73"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ksiqp"]
 viewport_path = NodePath("SubViewport")
@@ -16,6 +18,47 @@ viewport_path = NodePath("SubViewport")
 resource_local_to_scene = true
 shader = ExtResource("2_nrbq1")
 shader_parameter/src = SubResource("ViewportTexture_ksiqp")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4miyq"]
+viewport_path = NodePath("Blit2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uw4oa"]
+resource_local_to_scene = true
+shader = ExtResource("3_bdo1k")
+shader_parameter/srcA = SubResource("ViewportTexture_4miyq")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4i5ws"]
+viewport_path = NodePath("Game")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4kdhj"]
+resource_local_to_scene = true
+shader = ExtResource("3_bdo1k")
+shader_parameter/srcA = SubResource("ViewportTexture_4i5ws")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_c2x4m"]
+viewport_path = NodePath("Blit")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_42bcj"]
+resource_local_to_scene = true
+shader = ExtResource("3_bdo1k")
+shader_parameter/srcA = SubResource("ViewportTexture_c2x4m")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_val6n"]
+viewport_path = NodePath("Game")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kjns2"]
+resource_local_to_scene = true
+shader = ExtResource("2_58830")
+shader_parameter/src = SubResource("ViewportTexture_val6n")
+shader_parameter/pal = ExtResource("3_nn5x4")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mbqnm"]
+viewport_path = NodePath("Blit2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dimmf"]
+resource_local_to_scene = true
+shader = ExtResource("9_fjp73")
+shader_parameter/src = SubResource("ViewportTexture_mbqnm")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_33dwi"]
 viewport_path = NodePath("WorldViewport")
@@ -31,20 +74,14 @@ shader_parameter/src = SubResource("ViewportTexture_33dwi")
 texture_filter = 1
 script = ExtResource("1_tsxt1")
 
-[node name="WorldViewport" type="SubViewport" parent="."]
+[node name="Game" type="SubViewport" parent="."]
+transparent_bg = true
 size = Vector2i(128, 128)
 
-[node name="WorldCanvas" type="CanvasLayer" parent="WorldViewport"]
+[node name="WorldCanvas" type="CanvasLayer" parent="Game"]
 
-[node name="BackgroundRect" type="ColorRect" parent="WorldViewport/WorldCanvas"]
-material = ExtResource("2_grwpl")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="DebugLinesRect" type="ColorRect" parent="WorldViewport/WorldCanvas"]
+[node name="DebugLinesRect" type="ColorRect" parent="Game/WorldCanvas"]
+visible = false
 material = SubResource("ShaderMaterial_oeyss")
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,19 +89,71 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AGENTS GO IN HERE!" type="Node2D" parent="WorldViewport/WorldCanvas"]
+[node name="ColorRect" type="ColorRect" parent="Game/WorldCanvas"]
+material = SubResource("ShaderMaterial_uw4oa")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Spawner" type="Node" parent="WorldViewport/WorldCanvas" node_paths=PackedStringArray("agentParent")]
+[node name="AGENTS GO IN HERE!" type="Node2D" parent="Game/WorldCanvas"]
+
+[node name="Spawner" type="Node" parent="Game/WorldCanvas" node_paths=PackedStringArray("agentParent")]
 script = ExtResource("3_cn8v4")
 agentParent = NodePath("../AGENTS GO IN HERE!")
-scenesToSpawn = Array[PackedScene]([ExtResource("4_6kt16"), ExtResource("5_d86ep")])
+scenesToSpawn = Array[PackedScene]([ExtResource("4_6kt16")])
 
-[node name="ConnectionManager" type="Node" parent="WorldViewport/WorldCanvas"]
+[node name="ConnectionManager" type="Node" parent="Game/WorldCanvas"]
 script = ExtResource("5_pdwv1")
-springForce = 1000.0
-overUnderDamp = 1.0
-angularSpringForce = 1000.0
+springForce = 20.0
+overUnderDamp = 1.1
+angularSpringForce = 4.0
 angularSpringOverUnderDamp = 1.0
+
+[node name="Blit" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(128, 128)
+
+[node name="ColorRect" type="ColorRect" parent="Blit"]
+material = SubResource("ShaderMaterial_4kdhj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Blit2" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(128, 128)
+
+[node name="ColorRect" type="ColorRect" parent="Blit2"]
+material = SubResource("ShaderMaterial_42bcj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WorldViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(128, 128)
+
+[node name="BackgroundRect" type="ColorRect" parent="WorldViewport"]
+material = SubResource("ShaderMaterial_kjns2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="WorldViewport"]
+material = SubResource("ShaderMaterial_dimmf")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Display" type="CanvasLayer" parent="."]
 
@@ -77,6 +166,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
 size = Vector2i(128, 128)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
