@@ -1,6 +1,9 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://5lkkaquwo8ti"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://5lkkaquwo8ti"]
 
 [ext_resource type="Shader" path="res://shaders/Background.gdshader" id="1_48kkb"]
+[ext_resource type="Texture2D" uid="uid://dm31w6lik2ifa" path="res://materials/color_palette.png" id="2_0r4tj"]
 
 [resource]
+resource_local_to_scene = true
 shader = ExtResource("1_48kkb")
+shader_parameter/pal = ExtResource("2_0r4tj")

@@ -46,11 +46,12 @@ public partial class ConnectionManager: Node {
 				Vector2 relativeVel = conn.a.GetVelocity() - conn.b.GetVelocity();
 
 				float d = overUnderDamp * (2f * Mathf.Sqrt(springForce));
-				Vector2 accel = -(springForce * displacement.Normalized() * distError) - (d * relativeVel);
-
-				// Vector2 deltaV = -accel;
-				conn.a.GetAgent().ApplyForce(accel * (float)delta);
-				conn.b.GetAgent().ApplyForce(-accel * (float)delta);
+                if (dispDist > 0f) {
+                    Vector2 accel = -(springForce * displacement.Normalized() * distError) - (d * relativeVel);
+                    // Vector2 deltaV = -accel;
+                    conn.a.GetAgent().ApplyForce(accel);
+                    conn.b.GetAgent().ApplyForce(-accel);
+                }
 			}
 			
 
@@ -62,8 +63,8 @@ public partial class ConnectionManager: Node {
 				float relativeVel = conn.a.GetAgent().AngularVelocity - conn.b.GetAgent().AngularVelocity;
 				float accel = -(angularSpringForce * distError) - (d * relativeVel);                
 
-				conn.a.GetAgent().ApplyTorque(accel * (float)delta);
-				conn.b.GetAgent().ApplyTorque(-accel * (float)delta);
+				conn.a.GetAgent().ApplyTorque(accel);
+				conn.b.GetAgent().ApplyTorque(-accel);
 			}
 		}
 	}
