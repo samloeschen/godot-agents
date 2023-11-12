@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://5lkkaquwo8ti" path="res://shaders/Background.tres" id="2_grwpl"]
 [ext_resource type="Shader" path="res://shaders/Viewport.gdshader" id="2_nrbq1"]
 [ext_resource type="Script" path="res://src/Spawner.cs" id="3_cn8v4"]
-[ext_resource type="PackedScene" uid="uid://d2ppwe5u7olpl" path="res://scenes/TyAgent2.tscn" id="4_6kt16"]
+[ext_resource type="PackedScene" uid="uid://c58okjm8g6bta" path="res://scenes/TyAgent2.tscn" id="4_6kt16"]
 [ext_resource type="PackedScene" uid="uid://dxab0nnema7yu" path="res://scenes/TyAgent.tscn" id="5_d86ep"]
 [ext_resource type="Script" path="res://src/ConnectionManager.cs" id="5_pdwv1"]
 [ext_resource type="Script" path="res://src/DebugDraw.cs" id="6_3nkyo"]
