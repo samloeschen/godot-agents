@@ -17,7 +17,7 @@ float noise(float x) {
 }
 
 
-float noise1(vec2 x) {
+float noise2(vec2 x) {
     vec2 i = floor(x);
     vec2 f = fract(x);
 
@@ -39,12 +39,39 @@ float noise1(vec2 x) {
 }
 
 
+vec2 circhash( float n )
+{
+    float sn = sin(n);
+    return fract(vec2(sn,sn*42125.13));
+}
+
+float circleNoise( vec2 uv )
+{
+    float uv_y = floor(uv.y);
+    uv.x += uv_y*.31;
+    vec2 f = fract(uv);
+    vec2 h = circhash(floor(uv.x)*uv_y);
+    float m = (length(f-.25-(h.x*.5)));
+    float r = h.y*.25;
+    return m = smoothstep(r-.10*r,r,m);
+}
+
 
 void fragment() {
 	vec4 c = textureLod(srcA, UV, 0.0);
-	c *= 0.95;
-	if (dot(c, c) < 0.2) {
-		c = vec4(0.0);
+
+	
+	vec2 p = UV + noise2(UV * 1.5) * 0.2;
+	float n = circleNoise(p * 10.0 + vec2(noise2(UV * 2.0), TIME * 1.0));
+	
+	
+	
+	if (n < 1.0 && c.a < 1.0) {
+		c *= 0.5;
+	} else {
+		c *= 0.97;
 	}
-	COLOR.rgba = c;
+	
+
+	COLOR.rgba = c;//vec4(vec3(n), 1.0);
 }
