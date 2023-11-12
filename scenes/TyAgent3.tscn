@@ -1,0 +1,122 @@
+[gd_scene load_steps=13 format=3 uid="uid://cjpgpa8abcniq"]
+
+[ext_resource type="Script" path="res://src/AgentDependencies.cs" id="1_ic301"]
+[ext_resource type="Texture2D" uid="uid://dmxfykt0vr2qs" path="res://sprites/diamond.png" id="2_u1ixo"]
+[ext_resource type="Texture2D" uid="uid://b1tt1jc4vbgo" path="res://sprites/CellSprite_Body.png" id="3_0067j"]
+[ext_resource type="Material" uid="uid://dokcqo1ivbvhm" path="res://shaders/Agent1.tres" id="4_l0t7i"]
+[ext_resource type="Script" path="res://src/AgentDetector.cs" id="5_nmbqg"]
+[ext_resource type="Script" path="res://src/AgentBehaviours.cs" id="6_0tqyb"]
+[ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="7_mencn"]
+[ext_resource type="PackedScene" uid="uid://vuq4ebkd15qt" path="res://scenes/Connector.tscn" id="7_rmlh6"]
+[ext_resource type="Script" path="res://src/Blinker.cs" id="8_k1lmj"]
+[ext_resource type="Script" path="res://src/PositionWrap.cs" id="8_nnaea"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_di4hg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d230m"]
+
+[node name="TestAgent2" type="RigidBody2D"]
+gravity_scale = 2.66454e-15
+script = ExtResource("1_ic301")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_di4hg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.32549, 1, 0.862745, 1)
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -9.0
+offset_right = 9.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_u1ixo")
+expand_mode = 1
+
+[node name="Eye" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -5.0
+offset_right = 4.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_0067j")
+expand_mode = 1
+
+[node name="Pupil" type="TextureRect" parent="."]
+modulate = Color(0.678431, 1, 0.984314, 1)
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -4.0
+offset_right = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_0067j")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = ExtResource("4_l0t7i")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -16.0
+offset_right = 15.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.129412, 1, 1)
+
+[node name="AgentDetector" type="Area2D" parent="."]
+script = ExtResource("5_nmbqg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AgentDetector"]
+visible = false
+scale = Vector2(4, 4)
+shape = SubResource("CircleShape2D_d230m")
+
+[node name="Behaviours" type="Node2D" parent="."]
+script = ExtResource("6_0tqyb")
+
+[node name="PositionWrap2" type="Node" parent="Behaviours"]
+script = ExtResource("8_nnaea")
+
+[node name="Blinker" type="Node" parent="Behaviours"]
+script = ExtResource("8_k1lmj")
+blinkChance = 0.04
+
+[node name="Connector" parent="Behaviours" instance=ExtResource("7_rmlh6")]
+position = Vector2(5.68434e-14, -1)
+rotation = 0.820305
+scale = Vector2(0.79, 0.79)
+maxConnections = 10
+overrideAgentPolarity = true
+customPolarity = 10
+
+[node name="RandomVelocityOnReady" type="Node" parent="Behaviours"]
+script = ExtResource("7_mencn")
+initialVelocityMin = 50.0
+initialVelocityMax = 20.0
+
+[node name="PositionWrap" type="Node" parent="Behaviours"]
+script = ExtResource("8_nnaea")

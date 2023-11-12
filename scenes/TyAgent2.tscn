@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c4vb3oskw8bj8"]
+[gd_scene load_steps=11 format=3 uid="uid://c58okjm8g6bta"]
 
 [ext_resource type="Script" path="res://src/AgentDependencies.cs" id="1_iu5b4"]
 [ext_resource type="Texture2D" uid="uid://58hb17wnperj" path="res://sprites/CellSprite_Body_HD.png" id="2_jcflt"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://src/AgentDetector.cs" id="5_0qnbr"]
 [ext_resource type="Script" path="res://src/AgentBehaviours.cs" id="6_k0oba"]
 [ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="7_m1vsu"]
-[ext_resource type="Script" path="res://src/PositionWrap.cs" id="8_014ys"]
+[ext_resource type="Script" path="res://src/BorderPush.cs" id="9_p0apn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_di4hg"]
 
@@ -101,5 +101,6 @@ script = ExtResource("7_m1vsu")
 initialVelocityMin = 50.0
 initialVelocityMax = 20.0
 
-[node name="PositionWrap" type="Node" parent="Behaviours"]
-script = ExtResource("8_014ys")
+[node name="BorderPush" type="Node" parent="Behaviours"]
+script = ExtResource("9_p0apn")
+strength = 100.0

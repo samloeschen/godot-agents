@@ -1,42 +1,79 @@
 using Godot;
 using System;
 
+public enum BlinkAllowedAxes
+{
+	X,
+	Y,
+	XandY,
+}
+
 public partial class Blinker : Node, IBehaviourNode
 {
 	[Export(PropertyHint.Range, "0,1")] public double blinkChance;
 	[Export] public double blinkSpeed = 1.0;
+	[Export] public BlinkAllowedAxes allowedAxes;
 
 	TextureRect eye;
 	TextureRect pupil;
 	double blinkState;
 	bool blinking;
+	Action BlinkFunc;
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (GD.Randf() < blinkChance) Blink();
-
-		if (this.blinkState >= 1.0) StopBlinking();
 		if (this.blinking)
 		{
-			var scale = this.pupil.Scale;
-			var newY = (float)((Math.Cos(this.blinkState * Math.PI * 2) + 1) / 2);
-
-			this.eye.Scale = new Vector2(this.eye.Scale.X, newY);
-			this.pupil.Scale = new Vector2(this.pupil.Scale.X, newY);
+			this.BlinkFunc?.Invoke();
+		}
+		else if (GD.Randf() < blinkChance)
+		{
+			this.blinking = true;
+			switch (this.allowedAxes)
+			{
+				case BlinkAllowedAxes.X:
+					this.BlinkFunc += BlinkX;
+					break;
+				case BlinkAllowedAxes.Y:
+					this.BlinkFunc += BlinkY;
+					break;
+				case BlinkAllowedAxes.XandY:
+					if (GD.Randf() < 0.5) {
+						this.BlinkFunc += BlinkX;
+					} else {
+						this.BlinkFunc += BlinkY;
+					}
+					break;
+			}
 		}
 
+		if (this.blinkState >= 1.0) StopBlinking();
 		this.blinkState += delta * this.blinkSpeed;
 	}
 
-	public void Blink()
+	private void BlinkX()
 	{
-		if (!this.blinking) this.blinking = true;
+		var newScale = (float)((Math.Cos(this.blinkState * Math.PI * 2) + 1) / 2);
+		var eyeY = this.eye.Scale.Y;
+		var pupilY = this.pupil.Scale.Y;
+		this.eye.Scale = new Vector2(newScale, eyeY);
+		this.pupil.Scale = new Vector2(newScale, pupilY);
+	}
+
+	private void BlinkY()
+	{
+		var newScale = (float)((Math.Cos(this.blinkState * Math.PI * 2) + 1) / 2);
+		var eyeX = this.eye.Scale.X;
+		var pupilX = this.pupil.Scale.X;
+		this.eye.Scale = new Vector2(eyeX, newScale);
+		this.pupil.Scale = new Vector2(pupilX, newScale);
 	}
 
 	public void StopBlinking()
 	{
 		this.blinking = false;
 		this.blinkState = 0.0;
+		this.BlinkFunc = null;
 	}
 
 	public void Init(AgentDependencies deps)

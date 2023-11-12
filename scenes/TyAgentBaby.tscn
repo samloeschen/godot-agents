@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dp5vi8qo1mntp"]
+[gd_scene load_steps=11 format=3 uid="uid://bbjpyfm76jf8c"]
 
 [ext_resource type="Script" path="res://src/AgentDependencies.cs" id="1_kwcwh"]
 [ext_resource type="Texture2D" uid="uid://bb0eogfwsuuj7" path="res://sprites/baby.png" id="2_n44q5"]
