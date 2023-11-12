@@ -28,7 +28,6 @@ public partial class Blinker : Node, IBehaviourNode
 		}
 		else if (GD.Randf() < blinkChance)
 		{
-			GD.Print("Starting blinking");
 			this.blinking = true;
 			switch (this.allowedAxes)
 			{

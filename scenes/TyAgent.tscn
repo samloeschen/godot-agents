@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="5_s8omf"]
 [ext_resource type="Script" path="res://src/PositionWrap.cs" id="6_tfmlv"]
 [ext_resource type="Script" path="res://src/AgentPolarity.cs" id="7_2fj8y"]
-[ext_resource type="PackedScene" uid="uid://vuq4ebkd15qt" path="res://scenes/Connector.tscn" id="8_x5gom"]
+[ext_resource type="PackedScene" path="res://scenes/Connector.tscn" id="8_x5gom"]
 [ext_resource type="Script" path="res://src/RandomGoal.cs" id="9_34muj"]
 [ext_resource type="Script" path="res://src/Blinker.cs" id="9_qkiwy"]
 [ext_resource type="Script" path="res://src/AgentMovementLinear.cs" id="10_ekb25"]
