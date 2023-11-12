@@ -23,6 +23,10 @@ public partial class ConnectionManager: Node {
 		instance = this;
 	}
 
+	public static void Clear() {
+		ActiveConns.Clear();
+	}
+
 	public override void _Process(double delta) {
 		foreach (var conn in ActiveConns) {
 			var pa = conn.a.GlobalPosition;
