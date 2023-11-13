@@ -38,7 +38,7 @@ void fragment() {
     }
 	
 	
-	COLOR.rgba =  vec4(color, 1.0);
+	COLOR.rgba =  vec4(color * 1.2 - 0.2, 1.0);
 	
 	
 }
