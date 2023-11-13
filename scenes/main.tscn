@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://djqxn24jlsgxg"]
+[gd_scene load_steps=32 format=3 uid="uid://djqxn24jlsgxg"]
 
 [ext_resource type="Script" path="res://src/Main.cs" id="1_tsxt1"]
 [ext_resource type="Shader" path="res://shaders/Background.gdshader" id="2_58830"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://src/Spawner.cs" id="3_cn8v4"]
 [ext_resource type="Texture2D" uid="uid://dm31w6lik2ifa" path="res://materials/color_palette.png" id="3_nn5x4"]
 [ext_resource type="PackedScene" uid="uid://d2ppwe5u7olpl" path="res://scenes/TyAgent2.tscn" id="4_6kt16"]
+[ext_resource type="Script" path="res://scenes/Title.cs" id="4_8ydiw"]
 [ext_resource type="Script" path="res://src/ConnectionManager.cs" id="5_pdwv1"]
 [ext_resource type="PackedScene" uid="uid://cjpgpa8abcniq" path="res://scenes/TyAgent3.tscn" id="6_2jy2s"]
 [ext_resource type="Script" path="res://src/DebugDraw.cs" id="6_3nkyo"]
@@ -15,6 +16,7 @@
 [ext_resource type="Shader" path="res://shaders/ViewportBlend.gdshader" id="9_fjp73"]
 [ext_resource type="PackedScene" uid="uid://dp5vi8qo1mntp" path="res://scenes/TyAgentBaby.tscn" id="9_xk8rn"]
 [ext_resource type="PackedScene" uid="uid://dxab0nnema7yu" path="res://scenes/TyAgent.tscn" id="10_dll5u"]
+[ext_resource type="Script" path="res://scenes/ColorRect.cs" id="16_hgieb"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ksiqp"]
 viewport_path = NodePath("SubViewport")
@@ -22,6 +24,7 @@ viewport_path = NodePath("SubViewport")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oeyss"]
 resource_local_to_scene = true
 shader = ExtResource("2_nrbq1")
+shader_parameter/fun_alpha = 1.0
 shader_parameter/src = SubResource("ViewportTexture_ksiqp")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_4miyq"]
@@ -31,6 +34,9 @@ viewport_path = NodePath("Blit")
 resource_local_to_scene = true
 shader = ExtResource("3_bdo1k")
 shader_parameter/srcA = SubResource("ViewportTexture_4miyq")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o3fp5"]
+light_mode = 1
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_4i5ws"]
 viewport_path = NodePath("Game")
@@ -55,6 +61,7 @@ viewport_path = NodePath("Blit")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dimmf"]
 resource_local_to_scene = true
 shader = ExtResource("9_fjp73")
+shader_parameter/fun_alpha = 1.0
 shader_parameter/src = SubResource("ViewportTexture_mbqnm")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_33dwi"]
@@ -63,6 +70,7 @@ viewport_path = NodePath("WorldViewport")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ogjjx"]
 resource_local_to_scene = true
 shader = ExtResource("2_nrbq1")
+shader_parameter/fun_alpha = 1.0
 shader_parameter/src = SubResource("ViewportTexture_33dwi")
 
 [sub_resource type="Environment" id="Environment_rmma7"]
@@ -122,6 +130,21 @@ overUnderDamp = 1.1
 angularSpringForce = 4.0
 angularSpringOverUnderDamp = 1.0
 
+[node name="Title" type="RichTextLabel" parent="Game/WorldCanvas/ConnectionManager"]
+material = SubResource("CanvasItemMaterial_o3fp5")
+offset_left = 4.88
+offset_right = 204.88
+offset_bottom = 100.0
+theme_override_colors/default_color = Color(0.619608, 0.654902, 1, 0.592157)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+text = "CAMP
+LUBRICOSUS"
+shortcut_keys_enabled = false
+custom_effects = [null]
+script = ExtResource("4_8ydiw")
+
+[node name="Timer" type="Timer" parent="Game/WorldCanvas/ConnectionManager/Title"]
+
 [node name="Blit" type="SubViewport" parent="."]
 transparent_bg = true
 size = Vector2i(128, 128)
@@ -153,6 +176,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("16_hgieb")
 
 [node name="Display" type="CanvasLayer" parent="."]
 

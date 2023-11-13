@@ -21,8 +21,8 @@ public partial class BorderPush : Node, IBehaviourNode
         var screenHalfY = screen.Y / 2;
         var x = rb.Position.X;
         var y = rb.Position.Y;
-        var halfX = this.cr.GetRect().Size.X;
-        var halfY = this.cr.GetRect().Size.Y;
+        var halfX = this.cr?.GetRect().Size.X ?? 5f;
+        var halfY = this.cr?.GetRect().Size.Y ?? 5f;
 
         var xforce = Math.Clamp(Math.Abs(x - screenHalfX) - screenHalfX, 0, int.MaxValue);
         var yforce = Math.Clamp(Math.Abs(y - screenHalfY) - screenHalfY, 0, int.MaxValue);
