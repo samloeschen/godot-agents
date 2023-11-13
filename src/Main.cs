@@ -19,6 +19,8 @@ partial class Main : Node
         //     DebugDraw.Line(this.target.Position.ToVector3(), mouse.ToVector3(), Colors.Green);
         // }
 
+        if (Input.IsActionJustPressed("reset")) Reset();
+
         if (Input.IsActionJustPressed("user-input")) SetTarget(mouse);
         if (Input.IsActionPressed("user-input"))
         {
@@ -55,5 +57,16 @@ partial class Main : Node
             var newDist = pos.DistanceTo(agent.Position);
             if (newDist < curDist) this.target = agent;
         }
+    }
+
+    private void Reset() {
+        var agents = this.FindChild("Agents");
+        foreach (Node agent in agents.GetChildren()) {
+            agent.QueueFree();
+        }
+
+        var spawner = this.FindChild("Spawner") as Spawner;
+        spawner._Ready();
+        ConnectionManager.Clear();
     }
 }
