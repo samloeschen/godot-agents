@@ -14,10 +14,17 @@ partial class Spawner: Node {
 		BlueNoisePoints.GenerateBlueNoiseSamplePoints(ref spawnPts, seed);
 
 		int idx = 0;
+		int remain = numSpawnPoints;
 		foreach (var pt in spawnPts) {
 			var root = scenesToSpawn[idx].Instantiate();
 
 			idx = (idx + 1) % scenesToSpawn.Length;
+
+			if (idx > remain / 2) {
+				remain /= 2;
+				idx = (idx + 1) % scenesToSpawn.Length;
+			}
+
 			agentParent.AddChild(root);
 			if (root is AgentDependencies deps) {
 				if (deps.GetNodeOrNull<RigidBody2D>() is {} rb) {
@@ -33,6 +40,6 @@ partial class Spawner: Node {
 
     public override void _Process(double delta) {
 		var p = GetViewport().GetVisibleRect().GetCenter().ToVector3();
-        DebugDraw.Line(p, p + Vector2.Up.ToVector3() * 10f, Colors.Red, Colors.White);
+        // DebugDraw.Line(p, p + Vector2.Up.ToVector3() * 10f, Colors.Red, Colors.White);
     }
 }
