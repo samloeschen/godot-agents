@@ -6,7 +6,7 @@
 [ext_resource type="Shader" path="res://shaders/Feedback.gdshader" id="3_bdo1k"]
 [ext_resource type="Script" path="res://src/Spawner.cs" id="3_cn8v4"]
 [ext_resource type="Texture2D" uid="uid://dm31w6lik2ifa" path="res://materials/color_palette.png" id="3_nn5x4"]
-[ext_resource type="PackedScene" uid="uid://c4vb3oskw8bj8" path="res://scenes/TyAgent2.tscn" id="4_6kt16"]
+[ext_resource type="PackedScene" uid="uid://d2ppwe5u7olpl" path="res://scenes/TyAgent2.tscn" id="4_6kt16"]
 [ext_resource type="Script" path="res://src/ConnectionManager.cs" id="5_pdwv1"]
 [ext_resource type="PackedScene" uid="uid://cjpgpa8abcniq" path="res://scenes/TyAgent3.tscn" id="6_2jy2s"]
 [ext_resource type="Script" path="res://src/DebugDraw.cs" id="6_3nkyo"]
@@ -92,6 +92,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Game/WorldCanvas/ColorRect"]
+position = Vector2(64, 64)
+amount = 32
+emission_shape = 3
+emission_rect_extents = Vector2(64, 64)
+direction = Vector2(-1, 2.08165e-12)
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 5.0
+initial_velocity_max = 8.0
+tangential_accel_min = 5.0
+tangential_accel_max = 10.0
+scale_amount_min = 0.5
+scale_amount_max = 1.5
+color = Color(0.941176, 0.972549, 0.905882, 1)
 
 [node name="Agents" type="Node2D" parent="Game/WorldCanvas"]
 
