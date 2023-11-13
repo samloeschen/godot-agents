@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d2x7rbt01ntxg"]
+[gd_scene load_steps=16 format=3 uid="uid://d2x7rbt01ntxg"]
 
 [ext_resource type="Script" path="res://src/AgentDependencies.cs" id="1_31ka1"]
 [ext_resource type="Texture2D" uid="uid://dosknr4espsl4" path="res://sprites/leaf.png" id="2_x0j3w"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="10_2t3m3"]
 [ext_resource type="Script" path="res://src/AgentMovementLinear.cs" id="11_ff0gp"]
 [ext_resource type="Script" path="res://src/RandomGoal.cs" id="12_qrw5h"]
+[ext_resource type="Script" path="res://src/AgentPolarity.cs" id="13_jvywx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_di4hg"]
 
@@ -138,3 +139,7 @@ script = ExtResource("12_qrw5h")
 script = ExtResource("10_2t3m3")
 initialVelocityMin = 50.0
 initialVelocityMax = 20.0
+
+[node name="Polarity" type="Node" parent="Behaviours"]
+script = ExtResource("13_jvywx")
+polarity = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cjpgpa8abcniq"]
+[gd_scene load_steps=14 format=3 uid="uid://cjpgpa8abcniq"]
 
 [ext_resource type="Script" path="res://src/AgentDependencies.cs" id="1_ic301"]
 [ext_resource type="Texture2D" uid="uid://dmxfykt0vr2qs" path="res://sprites/diamond.png" id="2_u1ixo"]
@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://dokcqo1ivbvhm" path="res://shaders/Agent1.tres" id="4_l0t7i"]
 [ext_resource type="Script" path="res://src/AgentDetector.cs" id="5_nmbqg"]
 [ext_resource type="Script" path="res://src/AgentBehaviours.cs" id="6_0tqyb"]
+[ext_resource type="Script" path="res://src/AgentPolarity.cs" id="7_ksuu6"]
 [ext_resource type="Script" path="res://src/RandomVelocityOnReady.cs" id="7_mencn"]
 [ext_resource type="PackedScene" uid="uid://vuq4ebkd15qt" path="res://scenes/Connector.tscn" id="7_rmlh6"]
 [ext_resource type="Script" path="res://src/AgentGoal.cs" id="7_vd66a"]
@@ -99,6 +100,10 @@ shape = SubResource("CircleShape2D_d230m")
 
 [node name="Behaviours" type="Node2D" parent="."]
 script = ExtResource("6_0tqyb")
+
+[node name="Polarity" type="Node" parent="Behaviours"]
+script = ExtResource("7_ksuu6")
+polarity = 1
 
 [node name="Agent Goal" type="Node" parent="Behaviours"]
 script = ExtResource("7_vd66a")
